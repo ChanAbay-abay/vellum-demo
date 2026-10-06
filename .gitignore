@@ -37,3 +37,6 @@ tmp
 .claude/state/
 CLAUDE.local.md
 graphify-out/
+
+# Playwright MCP screenshots/snapshots
+.playwright-mcp

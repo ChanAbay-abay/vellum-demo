@@ -1,0 +1,1 @@
+verdict: conditional-pass. One obvious target object (complete bike) filling ~90% of frame width, strong side silhouette, all major materials visible. Conditional because: cluttered shop background (no clean mask), single side view (NDS/top inferred; secondary photo terreno-mtb-ugc.jpg same frame different colorway used for geometry), brand logo fidelity approximate.

@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "side",
+    "sourcePath": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/reference.jpg",
+    "width": 1348,
+    "height": 1080,
+    "foregroundCoverage": 0.4825,
+    "largestComponentFraction": 0.9244,
+    "pHash": 18153293184452200448,
+    "duplicateOfHash": null
+  }
+}

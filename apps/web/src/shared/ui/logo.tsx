@@ -1,39 +1,54 @@
 import { cn } from "@zo-stack/ui/lib/utils";
 
-import { siteConfig } from "@/config/site.config";
+/**
+ * Traced Vellum marks served from /public/brand (plain <img>: SVG logos skip the image
+ * pipeline). `tone` picks the solid file for the ground: black on light, white on dark.
+ * The `*-currentColor` variants (no suffix) exist in /public/brand for inline use.
+ * "edge" is always this wordmark, never typed (DESIGN.md §3).
+ */
+type Tone = "black" | "white";
 
-/** Text wordmark in the display face. Replace with the client's logo SVG. */
-export function Wordmark({ className }: { className?: string }) {
+export function VellumLockup({ tone = "black", className }: { tone?: Tone; className?: string }) {
   return (
-    <span
-      className={cn(
-        "font-display block text-[1.375rem] leading-none tracking-[0.16em] uppercase",
-        className
-      )}
-    >
-      {siteConfig.name}
-    </span>
+    <img
+      alt="Vellum Cycles"
+      className={cn("h-auto", className)}
+      height={100}
+      src={`/brand/vellum-lockup-${tone}.svg`}
+      width={734}
+    />
   );
 }
 
-/** Rosette emblem in the text color. Placeholder for the client's brand mark. */
-export function Emblem({ className }: { className?: string }) {
+export function VellumMark({ tone = "black", className }: { tone?: Tone; className?: string }) {
   return (
-    <svg aria-hidden className={className} fill="none" viewBox="0 0 72 72">
-      {Array.from({ length: 12 }, (_, petal) => (
-        <ellipse
-          key={petal}
-          cx="36"
-          cy="22"
-          rx="5.5"
-          ry="14"
-          stroke="currentColor"
-          strokeOpacity="0.85"
-          strokeWidth="1"
-          transform={`rotate(${petal * 30} 36 36)`}
-        />
-      ))}
-      <circle cx="36" cy="36" r="4" stroke="currentColor" strokeWidth="1" />
-    </svg>
+    <img
+      alt="Vellum"
+      className={cn("h-auto", className)}
+      height={356}
+      src={`/brand/vellum-mark-${tone}.svg`}
+      width={660}
+    />
+  );
+}
+
+export function EdgeWordmark({
+  tone = "black",
+  className,
+  alt = "Edge"
+}: {
+  tone?: Tone;
+  className?: string;
+  /** Pass "" when a visible label already names the model */
+  alt?: string;
+}) {
+  return (
+    <img
+      alt={alt}
+      className={cn("h-auto", className)}
+      height={210}
+      src={`/brand/edge-wordmark-${tone}.svg`}
+      width={1027}
+    />
   );
 }

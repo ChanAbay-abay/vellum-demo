@@ -1,0 +1,196 @@
+{
+  "model": "vellum-edge-gen2",
+  "specifiedComponents": 33,
+  "builtParts": 7,
+  "errors": 26,
+  "warnings": 5,
+  "result": "fail",
+  "findings": [
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "head-tube",
+      "detail": "specified component 'head-tube' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "top-tube",
+      "detail": "specified component 'top-tube' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "down-tube",
+      "detail": "specified component 'down-tube' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "seat-tube",
+      "detail": "specified component 'seat-tube' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "seat-stays",
+      "detail": "specified component 'seat-stays' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "chain-stays",
+      "detail": "specified component 'chain-stays' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "bb-shell",
+      "detail": "specified component 'bb-shell' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "dropouts",
+      "detail": "specified component 'dropouts' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "brake-front",
+      "detail": "specified component 'brake-front' has no matching part in the built model, and its parent 'fork' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "brake-rear",
+      "detail": "specified component 'brake-rear' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "rim",
+      "detail": "specified component 'rim' has no matching part in the built model, and its parent 'wheel-front' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "tyre-tan",
+      "detail": "specified component 'tyre-tan' has no matching part in the built model, and its parent 'wheel-front' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "spokes",
+      "detail": "specified component 'spokes' has no matching part in the built model, and its parent 'wheel-front' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "hub",
+      "detail": "specified component 'hub' has no matching part in the built model, and its parent 'wheel-front' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "crankset",
+      "detail": "specified component 'crankset' has no matching part in the built model, and its parent 'drivetrain' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "chain",
+      "detail": "specified component 'chain' has no matching part in the built model, and its parent 'drivetrain' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "cassette",
+      "detail": "specified component 'cassette' has no matching part in the built model, and its parent 'drivetrain' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "rear-derailleur",
+      "detail": "specified component 'rear-derailleur' has no matching part in the built model, and its parent 'drivetrain' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "front-derailleur",
+      "detail": "specified component 'front-derailleur' has no matching part in the built model, and its parent 'drivetrain' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "stem",
+      "detail": "specified component 'stem' has no matching part in the built model, and its parent 'cockpit' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "handlebar",
+      "detail": "specified component 'handlebar' has no matching part in the built model, and its parent 'cockpit' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "hoods",
+      "detail": "specified component 'hoods' has no matching part in the built model, and its parent 'cockpit' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "cable-housing",
+      "detail": "specified component 'cable-housing' has no matching part in the built model, and its parent 'cockpit' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "seatpost",
+      "detail": "specified component 'seatpost' has no matching part in the built model, and its parent 'seatpost-saddle' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "saddle",
+      "detail": "specified component 'saddle' has no matching part in the built model, and its parent 'seatpost-saddle' is missing too"
+    },
+    {
+      "check": "component-missing",
+      "severity": "error",
+      "subject": "bottle-cage",
+      "detail": "specified component 'bottle-cage' has no matching part in the built model, and its parent 'frame' is missing too"
+    },
+    {
+      "check": "detail-dangling",
+      "severity": "warning",
+      "subject": "dt-wordmark",
+      "detail": "mapsTo 'down-tube/dt-wordmark' matches no component, localFeature or localOverride"
+    },
+    {
+      "check": "detail-dangling",
+      "severity": "warning",
+      "subject": "frame-gloss",
+      "detail": "mapsTo 'paint-white' matches no component, localFeature or localOverride"
+    },
+    {
+      "check": "detail-dangling",
+      "severity": "warning",
+      "subject": "tt-grey-band",
+      "detail": "mapsTo 'top-tube/tt-grey-band' matches no component, localFeature or localOverride"
+    },
+    {
+      "check": "detail-dangling",
+      "severity": "warning",
+      "subject": "st-dark",
+      "detail": "mapsTo 'seat-tube/st-light-band' matches no component, localFeature or localOverride"
+    },
+    {
+      "check": "detail-dangling",
+      "severity": "warning",
+      "subject": "fork-decal",
+      "detail": "mapsTo 'fork/fork-decal' matches no component, localFeature or localOverride"
+    }
+  ]
+}

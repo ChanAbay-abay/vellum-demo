@@ -1,7 +1,7 @@
 import { cn } from "@zo-stack/ui/lib/utils";
 
-import { Footer } from "@/features/footer";
-import { Navbar } from "@/features/navbar";
+import { SiteFooter } from "@/features/site-footer";
+import { SiteNav } from "@/features/site-nav";
 
 export function CenteredLayout({
   children,
@@ -13,12 +13,12 @@ export function CenteredLayout({
   return (
     <>
       <div className={cn("flex min-h-screen flex-col", className)}>
-        <Navbar />
+        <SiteNav />
         <main className="relative -top-(--navbar-height) grid flex-1 place-items-center pt-(--navbar-height)">
           {children}
         </main>
       </div>
-      <Footer className="max-lg:mt-12" />
+      <SiteFooter />
     </>
   );
 }

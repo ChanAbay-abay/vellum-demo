@@ -1,0 +1,17 @@
+Terreno image analysis (pipeline evidence for state.py). reference.jpg 1348x1080, drive side, front at image right.
+Scale: mean tyre outer radius 244px = 0.37m -> 660 px/m; ground y~1052. Perspective: rear tyre 252px, front 236px.
+L1: XC carbon hardtail MTB, 29in, object, conf 0.97. Drive side visible = model +Z camera, no mirroring.
+L2: two circles + diamond frame of tapered tubes; bilateral except drivetrain (DS) and rotors (NDS).
+L3 macro: frame, fork, wheel-front, wheel-rear, drivetrain, cockpit, seatpost-saddle.
+   meso: HT (integrated headset), TT sloping, DT oversize diamond, ST + copper band, CS, SS, dropouts/thru-axle;
+   fork crown/stanchions/lowers/arch; rim, tyre, hub, 28 spokes; crank arms, chainring, spindle, cassette, chain, RD, pedals;
+   stem, bar, grips, levers, spacers; post, collar, rails, shell.  micro: spokes, teeth, knobs, rotor arms.
+L4 (px -> m): rear axle (325,808), front axle (1042,812) -> WB ~1.09-1.10; BB (615,868) -> CS 0.44, BB drop ~0.07;
+   HT bottom (943,545) top (918,445), HA ~69.5deg; TT (918,470)->(552,600); saddle top y385 -> 1.01m; bar ~0.96m;
+   stem ~0.09m slight negative; crank 0.175 forward horizontal; rotor 160mm.
+L5: frame black UD carbon dielectric satin clearcoat; copper metallic band on ST; tread black rubber r0.9; sidewall tan
+   ~(222,190,165) r0.8; rims black carbon satin; spokes black; cassette/ring/cranks silver metal r0.3; chain gold;
+   spindle gold; RD/pedal/stem/bar/post/saddle black; fork black w/ grey SID graphic, blue top cap; rotor/caliper silver.
+L7 identity: tan walls; oversize DT + grey VELLUM logo; sloping TT/low cluster; copper ST band; silver 1x + big cassette,
+   gold chain; long slammed stem flat bar; black fork; deep black rims; short-nose saddle.
+L8 unknowns: NDS, bar width (assume 0.74), tube Z widths, rear caliper (hidden), exact sections.

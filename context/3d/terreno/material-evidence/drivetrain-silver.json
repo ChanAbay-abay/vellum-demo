@@ -1,0 +1,76 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.766,
+  "estimatedFidelity": 0.766,
+  "targetThreshold": 0.7,
+  "materialId": "drivetrain-silver",
+  "sourceImage": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/crop-drivetrain-silver.png",
+  "outDir": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/drivetrain-silver",
+  "palette": ["#DFE6F0", "#CFD4DD", "#F5FBFD", "#B9BBBD", "#8A8984"],
+  "maps": {
+    "albedo": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/drivetrain-silver/drivetrain-silver_albedo.png",
+      "url": "drivetrain-silver_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/drivetrain-silver/drivetrain-silver_roughness.png",
+      "url": "drivetrain-silver_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/drivetrain-silver/drivetrain-silver_height.png",
+      "url": "drivetrain-silver_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/drivetrain-silver/drivetrain-silver_normal.png",
+      "url": "drivetrain-silver_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/drivetrain-silver/drivetrain-silver_ao.png",
+      "url": "drivetrain-silver_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 70,
+    "sourceHeight": 16,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 70,
+      "height": 16
+    },
+    "mask": {
+      "backgroundColor": "#C3C5C8",
+      "backgroundNoise": 67.186,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 1.0
+    },
+    "mapStats": {
+      "valueRange": 0.3657,
+      "heightP90Gradient": 0.03196,
+      "roughnessBase": 0.696,
+      "roughnessVariation": 0.059,
+      "normalStrength": 0.194,
+      "blurRadius": 21
+    },
+    "palette": ["#DFE6F0", "#CFD4DD", "#F5FBFD", "#B9BBBD", "#8A8984"]
+  },
+  "warnings": [
+    "foreground mask is tiny; material extraction is likely unreliable",
+    "image is not clearly isolated from background; using most pixels as material evidence",
+    "object/background separation is weak",
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "overall-silhouette",
+    "score": 0.88,
+    "notes": "aspect/scale delta 0.01 vs reference after alignment; 1px-tolerant IoU 0.87; wheels, BB, HT, saddle, bars on measured landmarks"
+  },
+  {
+    "id": "dropped-stays-black-mast",
+    "score": 0.8,
+    "notes": "dropped stays meet black aero ST at 0.65 m; seat cluster slightly slimmer than reference; white wishbone bridge simplified"
+  },
+  {
+    "id": "retro-stripes-wordmark",
+    "score": 0.8,
+    "notes": "4 bands on TT and chainstay at measured x; wordmark from brand SVG both flanks; side-view lighting lifts burgundy toward red"
+  },
+  {
+    "id": "deep-wheels",
+    "score": 0.82,
+    "notes": "50 mm rims, 28 mm tyres, 24 spokes, 160 rotors; rim flank flat (real rims slightly convex)"
+  },
+  {
+    "id": "fork-cockpit",
+    "score": 0.72,
+    "notes": "curved tapered fork with badge band; integrated bar/stem; hoods smaller and less sculpted than SRAM hoods"
+  },
+  {
+    "id": "drivetrain",
+    "score": 0.65,
+    "notes": "rings/spider/cranks/cassette/chain/FD/RD present; RD and FD are blocky approximations, chain is two straight runs, no teeth on cogs"
+  }
+]

@@ -1,0 +1,244 @@
+{
+  "model": null,
+  "specifiedComponents": 32,
+  "builtParts": 7,
+  "errors": 0,
+  "warnings": 0,
+  "result": "pass",
+  "findings": [
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "head-tube",
+      "detail": "no mesh of its own \u2014 folded into 'frame', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "top-tube",
+      "detail": "no mesh of its own \u2014 folded into 'frame', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "down-tube",
+      "detail": "no mesh of its own \u2014 folded into 'frame', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "seat-tube",
+      "detail": "no mesh of its own \u2014 folded into 'frame', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "chainstays",
+      "detail": "no mesh of its own \u2014 folded into 'frame', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "seatstays",
+      "detail": "no mesh of its own \u2014 folded into 'frame', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "dropouts",
+      "detail": "no mesh of its own \u2014 folded into 'frame', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "fork-crown",
+      "detail": "no mesh of its own \u2014 folded into 'fork', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "stanchions",
+      "detail": "no mesh of its own \u2014 folded into 'fork', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "lowers",
+      "detail": "no mesh of its own \u2014 folded into 'fork', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-front-tyre",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-front', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-front-rim",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-front', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-front-hub",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-front', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-front-spokes",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-front', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-front-rotor",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-front', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-rear-tyre",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-rear', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-rear-rim",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-rear', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-rear-hub",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-rear', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-rear-spokes",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-rear', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "wheel-rear-rotor",
+      "detail": "no mesh of its own \u2014 folded into 'wheel-rear', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "crankset",
+      "detail": "no mesh of its own \u2014 folded into 'drivetrain', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "cassette",
+      "detail": "no mesh of its own \u2014 folded into 'drivetrain', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "chain",
+      "detail": "no mesh of its own \u2014 folded into 'drivetrain', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "derailleur",
+      "detail": "no mesh of its own \u2014 folded into 'drivetrain', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "pedals",
+      "detail": "no mesh of its own \u2014 folded into 'drivetrain', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "spindle",
+      "detail": "no mesh of its own \u2014 folded into 'drivetrain', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "stem",
+      "detail": "no mesh of its own \u2014 folded into 'cockpit', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "handlebar",
+      "detail": "no mesh of its own \u2014 folded into 'cockpit', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "grips",
+      "detail": "no mesh of its own \u2014 folded into 'cockpit', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "levers",
+      "detail": "no mesh of its own \u2014 folded into 'cockpit', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "seatpost",
+      "detail": "no mesh of its own \u2014 folded into 'seatpost-saddle', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "component-folded",
+      "severity": "info",
+      "subject": "saddle-shell",
+      "detail": "no mesh of its own \u2014 folded into 'seatpost-saddle', which is built. Correct for relief; a real gap only if this needed to be separable."
+    },
+    {
+      "check": "part-not-specified",
+      "severity": "info",
+      "subject": "cockpit",
+      "detail": "built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)"
+    },
+    {
+      "check": "part-not-specified",
+      "severity": "info",
+      "subject": "drivetrain",
+      "detail": "built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)"
+    },
+    {
+      "check": "part-not-specified",
+      "severity": "info",
+      "subject": "fork",
+      "detail": "built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)"
+    },
+    {
+      "check": "part-not-specified",
+      "severity": "info",
+      "subject": "frame",
+      "detail": "built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)"
+    },
+    {
+      "check": "part-not-specified",
+      "severity": "info",
+      "subject": "seatpost-saddle",
+      "detail": "built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)"
+    },
+    {
+      "check": "part-not-specified",
+      "severity": "info",
+      "subject": "wheel-front",
+      "detail": "built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)"
+    },
+    {
+      "check": "part-not-specified",
+      "severity": "info",
+      "subject": "wheel-rear",
+      "detail": "built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "referenceAreaFraction": 0.14664672503658818,
+  "angles": [
+    {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/renders/p6-three-quarter.png",
+      "areaFraction": 0.1932716255424038,
+      "ratio": 1.3179402778628895,
+      "degenerate": false
+    },
+    {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/renders/p6-front.png",
+      "areaFraction": 0.0,
+      "ratio": 0.0,
+      "degenerate": true
+    },
+    {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/renders/p6-top.png",
+      "areaFraction": 0.046524764423447246,
+      "ratio": 0.31725743900410575,
+      "degenerate": false
+    }
+  ],
+  "degenerate": true,
+  "collapseRatio": 0.15,
+  "note": "deterministic; zero token; a flat-plane-faking-a-volume collapses in silhouette area when orbited"
+}

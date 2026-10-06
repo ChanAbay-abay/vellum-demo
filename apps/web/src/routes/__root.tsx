@@ -1,5 +1,4 @@
-import interLatin from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
-import tomorrowLatin from "@fontsource/tomorrow/files/tomorrow-latin-400-normal.woff2?url";
+import jostLatin from "@fontsource-variable/jost/files/jost-latin-wght-normal.woff2?url";
 import { a11yDevtoolsPlugin } from "@tanstack/devtools-a11y/react";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
@@ -38,25 +37,19 @@ export const Route = createRootRoute({
     return {
       links: [
         ...(rootSeo.links ?? []),
-        { href: "/favicon.ico", rel: "icon", sizes: "32x32" },
-        { href: "/logo192.png", rel: "apple-touch-icon" },
+        { href: "/favicon.ico", rel: "icon", sizes: "48x48" },
+        { href: "/favicon.svg", rel: "icon", type: "image/svg+xml" },
+        { href: "/apple-touch-icon.png", rel: "apple-touch-icon" },
         { href: "/manifest.json", rel: "manifest" },
         { href: "/sitemap.xml", rel: "sitemap", type: "application/xml" },
         /**
-         * Preload only the fonts used above the fold, latin subset only.
-         * Other subsets and Geist Mono still load on demand through @font-face in fonts.css.
+         * Preload only the font used above the fold, latin subset only.
+         * Other subsets still load on demand through @font-face in fonts.css.
          */
         {
           as: "font",
           crossOrigin: "anonymous",
-          href: interLatin,
-          rel: "preload",
-          type: "font/woff2"
-        },
-        {
-          as: "font",
-          crossOrigin: "anonymous",
-          href: tomorrowLatin,
+          href: jostLatin,
           rel: "preload",
           type: "font/woff2"
         },
@@ -76,7 +69,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           <style>{NO_SCRIPT_STYLES}</style>
         </noscript>
       </head>
-      <body className="bg-paper text-ink min-h-dvh font-sans antialiased">
+      <body className="bg-paper text-ink text-body min-h-dvh font-sans antialiased">
         <MotionProvider>
           <GsapSmoothScroll />
           <HashScroll />

@@ -1,0 +1,46 @@
+{
+  "verdict": "pass",
+  "action": "continue",
+  "fidelity": 0.8824,
+  "fidelityTarget": 0.85,
+  "hardGateFailures": ["silhouette IoU 0.688 < 0.85"],
+  "maskWarnings": [],
+  "disagreementSpread": 0.1523,
+  "signals": {
+    "silhouetteIoU": 0.6876,
+    "scaleDelta": 0.0102,
+    "aspectRatioDelta": 0.0103,
+    "symmetryParity": 0.8736,
+    "phashSimilarity": 0.9062,
+    "ssim": 0.9351,
+    "edgeOverlap": 0.7983,
+    "blowoutParity": 0.7998,
+    "flatRegionScore": 0.8668,
+    "tonalParity": 0.9463,
+    "objectness": 0.9417,
+    "hueZoneParity": 1.0
+  },
+  "specularWash": {
+    "satRatio": 1.0,
+    "hueDriftDeg": 0.0,
+    "towardCyan": false,
+    "flagged": false,
+    "advice": null
+  },
+  "reportOnlySignals": ["hueZoneParity", "specularWash"],
+  "reconstructionModeSuspected": true,
+  "weights": {
+    "proportion": 1.0,
+    "symmetry": 0.5,
+    "phash": 1.0,
+    "ssim": 1.5,
+    "edgeOverlap": 1.0,
+    "blowoutParity": 0.8,
+    "flatRegion": 0.8,
+    "tonalParity": 1.0,
+    "objectness": 1.5
+  },
+  "reference": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/renders/p6-mask-ref.png",
+  "render": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/renders/p6-mask-render.png",
+  "note": "deterministic ensemble; zero VLM/token. hueZoneParity is REPORT-ONLY (colour-aware, CIEDE2000) — not yet in the weighted fidelity; promote after corpus calibration. VLM layer (§3.4) runs only if this passes."
+}

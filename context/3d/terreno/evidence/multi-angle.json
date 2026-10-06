@@ -1,0 +1,20 @@
+{
+  "referenceAreaFraction": 0.17236578195406088,
+  "angles": [
+    {
+      "path": "renders/p7-three-quarter.png",
+      "areaFraction": 0.1678838985865594,
+      "ratio": 0.9739978357845062,
+      "degenerate": false
+    },
+    {
+      "path": "renders/p7-nds.png",
+      "areaFraction": 0.23162435432465106,
+      "ratio": 1.3437954546360242,
+      "degenerate": false
+    }
+  ],
+  "degenerate": false,
+  "collapseRatio": 0.15,
+  "note": "deterministic; zero token; a flat-plane-faking-a-volume collapses in silhouette area when orbited"
+}

@@ -20,6 +20,8 @@ export default defineConfig({
       "yarn.lock",
       "bun.lock",
       "routeTree.gen.ts",
+      // img2threejs working files (specs, renders, capture scripts), not app source
+      "context/3d/",
       ".tanstack-start/",
       ".tanstack/",
       "migrations/",
@@ -94,6 +96,7 @@ export default defineConfig({
     },
     ignorePatterns: [
       "dist",
+      "context/3d/",
       ".wrangler",
       ".vercel",
       ".netlify",

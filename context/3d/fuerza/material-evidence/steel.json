@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.844,
+  "estimatedFidelity": 0.844,
+  "targetThreshold": 0.7,
+  "materialId": "steel",
+  "sourceImage": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/crops/steel.png",
+  "outDir": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/material-evidence/steel",
+  "palette": ["#1B1C1D", "#272A2C", "#0E1113", "#59524A", "#C3BBB1"],
+  "maps": {
+    "albedo": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/material-evidence/steel/steel_albedo.png",
+      "url": "steel_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/material-evidence/steel/steel_roughness.png",
+      "url": "steel_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/material-evidence/steel/steel_height.png",
+      "url": "steel_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/material-evidence/steel/steel_normal.png",
+      "url": "steel_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/material-evidence/steel/steel_ao.png",
+      "url": "steel_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 45,
+    "sourceHeight": 50,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 45,
+      "height": 50
+    },
+    "mask": {
+      "backgroundColor": "#5A5E5D",
+      "backgroundNoise": 65.863,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.1551
+    },
+    "mapStats": {
+      "valueRange": 0.6191,
+      "heightP90Gradient": 0.01136,
+      "roughnessBase": 0.68,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.17,
+      "blurRadius": 21
+    },
+    "palette": ["#1B1C1D", "#272A2C", "#0E1113", "#59524A", "#C3BBB1"]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

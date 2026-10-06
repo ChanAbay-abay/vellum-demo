@@ -1,39 +1,59 @@
 /**
- * Palette: ink (black sections), paper (#d8d8d8 gray sections), and a mid-gray rule.
- * Per client, change these three. Color should come from photography, not UI.
+ * Vellum Cycles palette (DESIGN.md §2, binding). Ink/paper/bone/sand/graphite are grounds;
+ * the three stripe colors are the only accent and may appear in exactly three places:
+ * the 3-band stripe graphic, the active-nav underline + focus ring (orange), and the
+ * "Limited" tag (red text). Never as a section background, body text, icon, or button.
  */
 :root {
-  --ink: #0b0b0b;
-  --paper: #d8d8d8;
-  --rule: #848484;
+  --ink: #0b0b0a;
+  --paper: #ffffff;
+  --bone: #f4f1ec;
+  --sand: #d3c2ae;
+  --graphite: #1a1a19;
+  --rule: #e2ded7;
+  --rule-dark: #2a2a28;
+  --stripe-orange: #e5761d;
+  --stripe-red: #be3440;
+  --stripe-burgundy: #5c3340;
+  /* Muted text on dark grounds (6.69:1 on ink) */
+  --muted-on-dark: #9a968f;
   --brand: var(--ink);
-  --brand-foreground: #ffffff;
+  --brand-foreground: var(--paper);
 
   --background: var(--paper);
   --foreground: var(--ink);
   --card: var(--paper);
   --card-foreground: var(--ink);
-  --popover: #ffffff;
+  --popover: var(--paper);
   --popover-foreground: var(--ink);
   --primary: var(--ink);
-  --primary-foreground: #ffffff;
-  --secondary: #cfcfcf;
+  --primary-foreground: var(--paper);
+  --secondary: var(--bone);
   --secondary-foreground: var(--ink);
-  --muted: #cfcfcf;
-  --muted-foreground: rgb(11 11 11 / 0.5);
-  --accent: #cfcfcf;
-  --accent-foreground: var(--ink);
-  --destructive: oklch(0.577 0.245 27.325);
+  --muted: var(--bone);
+  --muted-foreground: #6b6864;
+  --accent: var(--stripe-red);
+  --accent-foreground: var(--paper);
+  --destructive: var(--stripe-red);
   --border: var(--rule);
   --input: var(--rule);
-  --ring: var(--ink);
-  --radius: 0;
+  /* 2px, offset 2px, on every ground. 3.03:1 on paper (non-text, passes), 6.51:1 on ink. */
+  --ring: var(--stripe-orange);
+  --radius: 0rem;
 }
 
 @theme inline {
   --color-ink: var(--ink);
   --color-paper: var(--paper);
+  --color-bone: var(--bone);
+  --color-sand: var(--sand);
+  --color-graphite: var(--graphite);
   --color-rule: var(--rule);
+  --color-rule-dark: var(--rule-dark);
+  --color-stripe-orange: var(--stripe-orange);
+  --color-stripe-red: var(--stripe-red);
+  --color-stripe-burgundy: var(--stripe-burgundy);
+  --color-muted-on-dark: var(--muted-on-dark);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
 

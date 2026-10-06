@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "tyre-sidewall",
+  "sourceImage": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/crop-tyre-sidewall.png",
+  "outDir": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/tyre-sidewall",
+  "palette": ["#D4B29E", "#E4C6B1", "#0F0D0C", "#F5D9C4", "#BC9B87"],
+  "maps": {
+    "albedo": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/tyre-sidewall/tyre-sidewall_albedo.png",
+      "url": "tyre-sidewall_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/tyre-sidewall/tyre-sidewall_roughness.png",
+      "url": "tyre-sidewall_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/tyre-sidewall/tyre-sidewall_height.png",
+      "url": "tyre-sidewall_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/tyre-sidewall/tyre-sidewall_normal.png",
+      "url": "tyre-sidewall_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/tyre-sidewall/tyre-sidewall_ao.png",
+      "url": "tyre-sidewall_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 24,
+    "sourceHeight": 100,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 100
+    },
+    "mask": {
+      "backgroundColor": "#BFA99D",
+      "backgroundNoise": 244.199,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.7642
+    },
+    "mapStats": {
+      "valueRange": 0.8664,
+      "heightP90Gradient": 0.04005,
+      "roughnessBase": 0.709,
+      "roughnessVariation": 0.082,
+      "normalStrength": 0.203,
+      "blurRadius": 21
+    },
+    "palette": ["#D4B29E", "#E4C6B1", "#0F0D0C", "#F5D9C4", "#BC9B87"]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

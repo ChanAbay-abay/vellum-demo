@@ -9,7 +9,7 @@ import { type FileRouteTypes, routeTree } from "@/routeTree.gen";
  * Pages to leave out of the sitemap. Also give them `robots: { index: false }` in their head().
  * Every other static page is included automatically.
  */
-const EXCLUDED_PATHS: ReadonlyArray<FileRouteTypes["fullPaths"]> = ["/lab/gsap-hero/"];
+const EXCLUDED_PATHS: ReadonlyArray<FileRouteTypes["fullPaths"]> = [];
 
 // Prerendered to /sitemap.xml at build time (see `pages` in vite.config.ts).
 export const Route = createFileRoute("/sitemap.xml")({

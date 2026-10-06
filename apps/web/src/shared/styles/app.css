@@ -27,28 +27,79 @@ html {
   }
 }
 
-/* Type scale. Every step uses a 1.5 line height. */
+/**
+ * Type scale (DESIGN.md §3). Jost throughout, no weight above 600.
+ * Sizes are rem, so they ride the fluid root above. Display/title are desktop sizes:
+ * sections set their own smaller mobile size (e.g. `text-[4rem] lg:text-display`).
+ */
 @theme {
-  --text-caption: 0.75rem;
-  --text-caption--line-height: 1.5;
-  --text-body: 1rem;
-  --text-body--line-height: 1.5;
-  --text-label: 0.875rem;
-  --text-label--line-height: 1.5;
-  --text-subheading: 1.125rem;
-  --text-subheading--line-height: 1.5;
-  --text-heading: 1.625rem;
-  --text-heading--line-height: 1.5;
-  --text-title: 2.125rem;
-  --text-title--line-height: 1.5;
-  --text-display: 3.375rem;
-  --text-display--line-height: 1.5;
+  --text-display: 9rem;
+  --text-display--line-height: 0.9;
+  --text-display--letter-spacing: -0.04em;
+  --text-display--font-weight: 600;
+  --text-title: 5rem;
+  --text-title--line-height: 0.95;
+  --text-title--letter-spacing: -0.03em;
+  --text-title--font-weight: 600;
+  --text-heading: 2.75rem;
+  --text-heading--line-height: 1.05;
+  --text-heading--letter-spacing: -0.02em;
+  --text-heading--font-weight: 500;
+  --text-subheading: 1.5rem;
+  --text-subheading--line-height: 1.25;
+  --text-subheading--letter-spacing: -0.01em;
+  --text-subheading--font-weight: 400;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-body--letter-spacing: 0;
+  --text-body--font-weight: 400;
+  /* Floor in px: the fluid root drops rem below 12px on desktop */
+  --text-caption: max(0.8125rem, 12px);
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.02em;
+  --text-caption--font-weight: 400;
 }
 
-/* Small uppercase UI label (nav, buttons, footer links) */
-@utility label {
-  font-size: var(--text-caption);
-  line-height: 1.5;
-  letter-spacing: 0.1em;
+/**
+ * Wide-tracked uppercase label (nav, buttons, small meta), like the brand's story graphics.
+ * A static utility rather than a theme size because it also sets the case.
+ * `cn` knows it is a font size (packages/ui/lib/utils.ts), so `text-label text-paper` keeps both.
+ */
+@utility text-label {
+  font-size: max(0.75rem, 12px);
+  line-height: 1.2;
+  letter-spacing: 0.22em;
+  font-weight: 500;
   text-transform: uppercase;
+}
+
+/* Model names (FUERZA, TERRENO): display caps slanted to echo the logo (DESIGN.md §3) */
+@utility model-name {
+  text-transform: uppercase;
+  transform: skewX(-12deg);
+}
+
+/*
+ * Featured colorway ring (model page switcher pill): a soft stripe-red halo breathing out from
+ * the segment every 2s. Reduced motion: the global reset stops the animation and the static
+ * ring set on the element stays.
+ */
+@keyframes featured-pulse {
+  0% {
+    box-shadow:
+      0 0 0 2px color-mix(in oklab, var(--stripe-red) 55%, transparent),
+      0 0 0 0 color-mix(in oklab, var(--stripe-red) 40%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow:
+      0 0 0 2px color-mix(in oklab, var(--stripe-red) 55%, transparent),
+      0 0 0 10px color-mix(in oklab, var(--stripe-red) 0%, transparent);
+  }
+}
+
+/* The static ring (what reduced motion sees) plus the pulse; add `motion-reduce:animate-none`. */
+@utility featured-ring {
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--stripe-red) 55%, transparent);
+  animation: featured-pulse 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }

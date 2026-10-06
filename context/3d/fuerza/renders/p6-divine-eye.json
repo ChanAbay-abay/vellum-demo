@@ -1,0 +1,46 @@
+{
+  "verdict": "reject",
+  "action": "refine-code",
+  "fidelity": 0.5275,
+  "fidelityTarget": 0.85,
+  "hardGateFailures": ["silhouette IoU 0.176 < 0.85", "scale delta 0.253 > 0.08"],
+  "maskWarnings": [],
+  "disagreementSpread": 0.875,
+  "signals": {
+    "silhouetteIoU": 0.1758,
+    "scaleDelta": 0.2525,
+    "aspectRatioDelta": 0.1647,
+    "symmetryParity": 0.0,
+    "phashSimilarity": 0.75,
+    "ssim": 0.7935,
+    "edgeOverlap": 0.5871,
+    "blowoutParity": 0.875,
+    "flatRegionScore": 0.7471,
+    "tonalParity": 0.248,
+    "objectness": 0.485,
+    "hueZoneParity": 0.0
+  },
+  "specularWash": {
+    "satRatio": 0.148,
+    "hueDriftDeg": -24.7,
+    "towardCyan": false,
+    "flagged": false,
+    "advice": null
+  },
+  "reportOnlySignals": ["hueZoneParity", "specularWash"],
+  "reconstructionModeSuspected": false,
+  "weights": {
+    "proportion": 1.0,
+    "symmetry": 0.5,
+    "phash": 1.0,
+    "ssim": 1.5,
+    "edgeOverlap": 1.0,
+    "blowoutParity": 0.8,
+    "flatRegion": 0.8,
+    "tonalParity": 1.0,
+    "objectness": 1.5
+  },
+  "reference": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/images/fuerza/retro-greige/fuerza-retro-greige-bike.jpg",
+  "render": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/fuerza/renders/p6-aligned.png",
+  "note": "deterministic ensemble; zero VLM/token. hueZoneParity is REPORT-ONLY (colour-aware, CIEDE2000) — not yet in the weighted fidelity; promote after corpus calibration. VLM layer (§3.4) runs only if this passes."
+}

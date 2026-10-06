@@ -1,0 +1,39 @@
+{
+  "parts": [
+    {
+      "name": "frame",
+      "kind": "part",
+      "module": "frame"
+    },
+    {
+      "name": "fork",
+      "kind": "part",
+      "module": "fork"
+    },
+    {
+      "name": "wheel-front",
+      "kind": "part",
+      "module": "wheel-front"
+    },
+    {
+      "name": "wheel-rear",
+      "kind": "part",
+      "module": "wheel-rear"
+    },
+    {
+      "name": "drivetrain",
+      "kind": "part",
+      "module": "drivetrain"
+    },
+    {
+      "name": "cockpit",
+      "kind": "part",
+      "module": "cockpit"
+    },
+    {
+      "name": "seatpost-saddle",
+      "kind": "part",
+      "module": "seatpost-saddle"
+    }
+  ]
+}

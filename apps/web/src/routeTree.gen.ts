@@ -13,9 +13,14 @@ import { Route as rootLayoutRouteRouteImport } from './routes/(root-layout)/rout
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as rootLayoutIndexRouteImport } from './routes/(root-layout)/index'
+import { Route as rootLayoutAboutIndexRouteImport } from './routes/(root-layout)/about/index'
+import { Route as rootLayoutMerchIndexRouteImport } from './routes/(root-layout)/merch/index'
+import { Route as rootLayoutModelsIndexRouteImport } from './routes/(root-layout)/models/index'
 import { Route as rootLayoutPrivacyPolicyIndexRouteImport } from './routes/(root-layout)/privacy-policy/index'
 import { Route as rootLayoutTermsOfServiceIndexRouteImport } from './routes/(root-layout)/terms-of-service/index'
-import { Route as rootLayoutLabGsapHeroIndexRouteImport } from './routes/(root-layout)/lab/gsap-hero/index'
+import { Route as rootLayoutModelsEdgeIndexRouteImport } from './routes/(root-layout)/models/edge/index'
+import { Route as rootLayoutModelsFuerzaIndexRouteImport } from './routes/(root-layout)/models/fuerza/index'
+import { Route as rootLayoutModelsTerrenoIndexRouteImport } from './routes/(root-layout)/models/terreno/index'
 
 const rootLayoutRouteRoute = rootLayoutRouteRouteImport.update({
   id: '/(root-layout)',
@@ -36,6 +41,21 @@ const rootLayoutIndexRoute = rootLayoutIndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootLayoutRouteRoute,
 } as any)
+const rootLayoutAboutIndexRoute = rootLayoutAboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
+  getParentRoute: () => rootLayoutRouteRoute,
+} as any)
+const rootLayoutMerchIndexRoute = rootLayoutMerchIndexRouteImport.update({
+  id: '/merch/',
+  path: '/merch/',
+  getParentRoute: () => rootLayoutRouteRoute,
+} as any)
+const rootLayoutModelsIndexRoute = rootLayoutModelsIndexRouteImport.update({
+  id: '/models/',
+  path: '/models/',
+  getParentRoute: () => rootLayoutRouteRoute,
+} as any)
 const rootLayoutPrivacyPolicyIndexRoute =
   rootLayoutPrivacyPolicyIndexRouteImport.update({
     id: '/privacy-policy/',
@@ -48,10 +68,22 @@ const rootLayoutTermsOfServiceIndexRoute =
     path: '/terms-of-service/',
     getParentRoute: () => rootLayoutRouteRoute,
   } as any)
-const rootLayoutLabGsapHeroIndexRoute =
-  rootLayoutLabGsapHeroIndexRouteImport.update({
-    id: '/lab/gsap-hero/',
-    path: '/lab/gsap-hero/',
+const rootLayoutModelsEdgeIndexRoute =
+  rootLayoutModelsEdgeIndexRouteImport.update({
+    id: '/models/edge/',
+    path: '/models/edge/',
+    getParentRoute: () => rootLayoutRouteRoute,
+  } as any)
+const rootLayoutModelsFuerzaIndexRoute =
+  rootLayoutModelsFuerzaIndexRouteImport.update({
+    id: '/models/fuerza/',
+    path: '/models/fuerza/',
+    getParentRoute: () => rootLayoutRouteRoute,
+  } as any)
+const rootLayoutModelsTerrenoIndexRoute =
+  rootLayoutModelsTerrenoIndexRouteImport.update({
+    id: '/models/terreno/',
+    path: '/models/terreno/',
     getParentRoute: () => rootLayoutRouteRoute,
   } as any)
 
@@ -59,17 +91,27 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/': typeof rootLayoutIndexRoute
+  '/about/': typeof rootLayoutAboutIndexRoute
+  '/merch/': typeof rootLayoutMerchIndexRoute
+  '/models/': typeof rootLayoutModelsIndexRoute
   '/privacy-policy/': typeof rootLayoutPrivacyPolicyIndexRoute
   '/terms-of-service/': typeof rootLayoutTermsOfServiceIndexRoute
-  '/lab/gsap-hero/': typeof rootLayoutLabGsapHeroIndexRoute
+  '/models/edge/': typeof rootLayoutModelsEdgeIndexRoute
+  '/models/fuerza/': typeof rootLayoutModelsFuerzaIndexRoute
+  '/models/terreno/': typeof rootLayoutModelsTerrenoIndexRoute
 }
 export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/': typeof rootLayoutIndexRoute
+  '/about': typeof rootLayoutAboutIndexRoute
+  '/merch': typeof rootLayoutMerchIndexRoute
+  '/models': typeof rootLayoutModelsIndexRoute
   '/privacy-policy': typeof rootLayoutPrivacyPolicyIndexRoute
   '/terms-of-service': typeof rootLayoutTermsOfServiceIndexRoute
-  '/lab/gsap-hero': typeof rootLayoutLabGsapHeroIndexRoute
+  '/models/edge': typeof rootLayoutModelsEdgeIndexRoute
+  '/models/fuerza': typeof rootLayoutModelsFuerzaIndexRoute
+  '/models/terreno': typeof rootLayoutModelsTerrenoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,9 +119,14 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/(root-layout)/': typeof rootLayoutIndexRoute
+  '/(root-layout)/about/': typeof rootLayoutAboutIndexRoute
+  '/(root-layout)/merch/': typeof rootLayoutMerchIndexRoute
+  '/(root-layout)/models/': typeof rootLayoutModelsIndexRoute
   '/(root-layout)/privacy-policy/': typeof rootLayoutPrivacyPolicyIndexRoute
   '/(root-layout)/terms-of-service/': typeof rootLayoutTermsOfServiceIndexRoute
-  '/(root-layout)/lab/gsap-hero/': typeof rootLayoutLabGsapHeroIndexRoute
+  '/(root-layout)/models/edge/': typeof rootLayoutModelsEdgeIndexRoute
+  '/(root-layout)/models/fuerza/': typeof rootLayoutModelsFuerzaIndexRoute
+  '/(root-layout)/models/terreno/': typeof rootLayoutModelsTerrenoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,26 +134,41 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/'
+    | '/about/'
+    | '/merch/'
+    | '/models/'
     | '/privacy-policy/'
     | '/terms-of-service/'
-    | '/lab/gsap-hero/'
+    | '/models/edge/'
+    | '/models/fuerza/'
+    | '/models/terreno/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/robots.txt'
     | '/sitemap.xml'
     | '/'
+    | '/about'
+    | '/merch'
+    | '/models'
     | '/privacy-policy'
     | '/terms-of-service'
-    | '/lab/gsap-hero'
+    | '/models/edge'
+    | '/models/fuerza'
+    | '/models/terreno'
   id:
     | '__root__'
     | '/(root-layout)'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/(root-layout)/'
+    | '/(root-layout)/about/'
+    | '/(root-layout)/merch/'
+    | '/(root-layout)/models/'
     | '/(root-layout)/privacy-policy/'
     | '/(root-layout)/terms-of-service/'
-    | '/(root-layout)/lab/gsap-hero/'
+    | '/(root-layout)/models/edge/'
+    | '/(root-layout)/models/fuerza/'
+    | '/(root-layout)/models/terreno/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +207,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof rootLayoutIndexRouteImport
       parentRoute: typeof rootLayoutRouteRoute
     }
+    '/(root-layout)/about/': {
+      id: '/(root-layout)/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof rootLayoutAboutIndexRouteImport
+      parentRoute: typeof rootLayoutRouteRoute
+    }
+    '/(root-layout)/merch/': {
+      id: '/(root-layout)/merch/'
+      path: '/merch'
+      fullPath: '/merch/'
+      preLoaderRoute: typeof rootLayoutMerchIndexRouteImport
+      parentRoute: typeof rootLayoutRouteRoute
+    }
+    '/(root-layout)/models/': {
+      id: '/(root-layout)/models/'
+      path: '/models'
+      fullPath: '/models/'
+      preLoaderRoute: typeof rootLayoutModelsIndexRouteImport
+      parentRoute: typeof rootLayoutRouteRoute
+    }
     '/(root-layout)/privacy-policy/': {
       id: '/(root-layout)/privacy-policy/'
       path: '/privacy-policy'
@@ -159,11 +242,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof rootLayoutTermsOfServiceIndexRouteImport
       parentRoute: typeof rootLayoutRouteRoute
     }
-    '/(root-layout)/lab/gsap-hero/': {
-      id: '/(root-layout)/lab/gsap-hero/'
-      path: '/lab/gsap-hero'
-      fullPath: '/lab/gsap-hero/'
-      preLoaderRoute: typeof rootLayoutLabGsapHeroIndexRouteImport
+    '/(root-layout)/models/edge/': {
+      id: '/(root-layout)/models/edge/'
+      path: '/models/edge'
+      fullPath: '/models/edge/'
+      preLoaderRoute: typeof rootLayoutModelsEdgeIndexRouteImport
+      parentRoute: typeof rootLayoutRouteRoute
+    }
+    '/(root-layout)/models/fuerza/': {
+      id: '/(root-layout)/models/fuerza/'
+      path: '/models/fuerza'
+      fullPath: '/models/fuerza/'
+      preLoaderRoute: typeof rootLayoutModelsFuerzaIndexRouteImport
+      parentRoute: typeof rootLayoutRouteRoute
+    }
+    '/(root-layout)/models/terreno/': {
+      id: '/(root-layout)/models/terreno/'
+      path: '/models/terreno'
+      fullPath: '/models/terreno/'
+      preLoaderRoute: typeof rootLayoutModelsTerrenoIndexRouteImport
       parentRoute: typeof rootLayoutRouteRoute
     }
   }
@@ -171,16 +268,26 @@ declare module '@tanstack/react-router' {
 
 interface rootLayoutRouteRouteChildren {
   rootLayoutIndexRoute: typeof rootLayoutIndexRoute
+  rootLayoutAboutIndexRoute: typeof rootLayoutAboutIndexRoute
+  rootLayoutMerchIndexRoute: typeof rootLayoutMerchIndexRoute
+  rootLayoutModelsIndexRoute: typeof rootLayoutModelsIndexRoute
   rootLayoutPrivacyPolicyIndexRoute: typeof rootLayoutPrivacyPolicyIndexRoute
   rootLayoutTermsOfServiceIndexRoute: typeof rootLayoutTermsOfServiceIndexRoute
-  rootLayoutLabGsapHeroIndexRoute: typeof rootLayoutLabGsapHeroIndexRoute
+  rootLayoutModelsEdgeIndexRoute: typeof rootLayoutModelsEdgeIndexRoute
+  rootLayoutModelsFuerzaIndexRoute: typeof rootLayoutModelsFuerzaIndexRoute
+  rootLayoutModelsTerrenoIndexRoute: typeof rootLayoutModelsTerrenoIndexRoute
 }
 
 const rootLayoutRouteRouteChildren: rootLayoutRouteRouteChildren = {
   rootLayoutIndexRoute: rootLayoutIndexRoute,
+  rootLayoutAboutIndexRoute: rootLayoutAboutIndexRoute,
+  rootLayoutMerchIndexRoute: rootLayoutMerchIndexRoute,
+  rootLayoutModelsIndexRoute: rootLayoutModelsIndexRoute,
   rootLayoutPrivacyPolicyIndexRoute: rootLayoutPrivacyPolicyIndexRoute,
   rootLayoutTermsOfServiceIndexRoute: rootLayoutTermsOfServiceIndexRoute,
-  rootLayoutLabGsapHeroIndexRoute: rootLayoutLabGsapHeroIndexRoute,
+  rootLayoutModelsEdgeIndexRoute: rootLayoutModelsEdgeIndexRoute,
+  rootLayoutModelsFuerzaIndexRoute: rootLayoutModelsFuerzaIndexRoute,
+  rootLayoutModelsTerrenoIndexRoute: rootLayoutModelsTerrenoIndexRoute,
 }
 
 const rootLayoutRouteRouteWithChildren = rootLayoutRouteRoute._addFileChildren(

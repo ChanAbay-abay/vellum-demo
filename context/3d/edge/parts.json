@@ -1,0 +1,49 @@
+{
+  "model": "vellum-edge-gen2",
+  "parts": [
+    {
+      "name": "frame",
+      "kind": "part",
+      "module": "frame",
+      "triangles": 1580
+    },
+    {
+      "name": "fork",
+      "kind": "part",
+      "module": "fork",
+      "triangles": 480
+    },
+    {
+      "name": "wheel-front",
+      "kind": "part",
+      "module": "wheel-front",
+      "triangles": 7584
+    },
+    {
+      "name": "wheel-rear",
+      "kind": "part",
+      "module": "wheel-rear",
+      "triangles": 7682
+    },
+    {
+      "name": "drivetrain",
+      "kind": "part",
+      "module": "drivetrain",
+      "triangles": 6384
+    },
+    {
+      "name": "cockpit",
+      "kind": "part",
+      "module": "cockpit",
+      "triangles": 4488
+    },
+    {
+      "name": "seatpost-saddle",
+      "kind": "part",
+      "module": "seatpost-saddle",
+      "triangles": 768
+    }
+  ],
+  "unnamedMeshes": 0,
+  "integralMeshes": 32
+}

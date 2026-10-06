@@ -1,0 +1,73 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "frame-carbon",
+  "sourceImage": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/crop-frame-carbon.png",
+  "outDir": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/frame-carbon",
+  "palette": ["#8E8273", "#0B0B0C", "#282C31", "#A59885", "#6E6962"],
+  "maps": {
+    "albedo": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/frame-carbon/frame-carbon_albedo.png",
+      "url": "frame-carbon_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/frame-carbon/frame-carbon_roughness.png",
+      "url": "frame-carbon_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/frame-carbon/frame-carbon_height.png",
+      "url": "frame-carbon_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/frame-carbon/frame-carbon_normal.png",
+      "url": "frame-carbon_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/3d/terreno/material-evidence/frame-carbon/frame-carbon_ao.png",
+      "url": "frame-carbon_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 35,
+    "sourceHeight": 50,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 35,
+      "height": 50
+    },
+    "mask": {
+      "backgroundColor": "#232527",
+      "backgroundNoise": 151.033,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.5194
+    },
+    "mapStats": {
+      "valueRange": 0.5724,
+      "heightP90Gradient": 0.05889,
+      "roughnessBase": 0.697,
+      "roughnessVariation": 0.095,
+      "normalStrength": 0.225,
+      "blurRadius": 21
+    },
+    "palette": ["#8E8273", "#0B0B0C", "#282C31", "#A59885", "#6E6962"]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

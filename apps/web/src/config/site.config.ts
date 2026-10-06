@@ -8,23 +8,23 @@
  */
 export const siteConfig = {
   /** Business name. Shown in the navbar, footer, and title template ("Page | name"). */
-  name: "zo-stack",
+  name: "Vellum Cycles",
   /** Home page <title>. Aim for 50-60 characters with what you do and where. */
-  title: "zo-stack | Websites and Systems for Philippine Businesses",
+  title: "Vellum Cycles | Carbon Road Bikes Designed in Cebu Since 2004",
   /** Default meta description. Aim for 140-160 characters. */
   description:
-    "zo-stack is an independent studio in Cebu crafting websites and business systems for Philippine companies, with the care of a fine instrument.",
+    "Vellum Cycles designs performance carbon road framesets in Cebu since 2004. Explore Fuerza, Edge and Terreno, and visit the Cabancalan showroom.",
   /** Public origin, from VITE_SITE_URL (validated in vite.config.ts). */
   url: import.meta.env.VITE_SITE_URL,
   /** <html lang> */
   lang: "en-PH",
   /** og:locale */
   locale: "en_PH",
-  /** Browser UI color on mobile. */
-  themeColor: "#111111",
+  /** Browser UI color on mobile. Bone, the hero ground. */
+  themeColor: "#F4F1EC",
   /** Default social share image in /public. 1200x630 PNG or JPG. */
   ogImage: {
-    alt: "zo-stack: websites and systems for Philippine businesses",
+    alt: "Vellum Cycles: carbon road bikes designed in Cebu since 2004",
     height: 630,
     url: "/og/default.png",
     width: 1200
@@ -33,33 +33,38 @@ export const siteConfig = {
   logo: "/logo512.png",
 
   contact: {
-    email: "hello@example.com",
-    /** As people write it locally */
-    phone: "0917 123 4567",
-    /** Same number in international format, for tel: links and JSON-LD */
-    phoneE164: "+639171234567",
-    /** Facebook Messenger link (m.me/<page>). Most PH customers message first. Leave "" to hide. */
-    messenger: "https://m.me/",
+    email: "info@vellumcycles.com",
+    /** * Placeholder: from a 2017 FB post, confirm with the client. */
+    phone: "032 232 2054",
+    phoneE164: "+63322322054",
+    /** Secondary inquiry channel. The primary is the Instagram DM (`instagramDm`). */
+    messenger: "https://m.me/vellumcycles",
+    /** Primary inquiry channel: every Inquire CTA opens this. */
+    instagramDm: "https://ig.me/m/vellumcycles",
     address: {
-      street: "Unit 1, Example Building, Example Street",
+      street: "ML Quezon St, Cabancalan",
       city: "Cebu City",
       region: "Cebu",
       postalCode: "6000",
       country: "PH"
     },
     /** Opening hours. Days use schema.org codes: Mo Tu We Th Fr Sa Su. */
-    hours: [{ closes: "18:00", days: ["Mo", "Tu", "We", "Th", "Fr"], opens: "09:00" }],
+    hours: [{ closes: "17:00", days: ["Mo", "Tu", "We", "Th", "Fr", "Sa"], opens: "10:00" }],
     /** Shown in the footer */
-    hoursLabel: "Mon to Fri, 9:00 AM to 6:00 PM"
+    hoursLabel: "Mon to Sat, 10:00 AM to 5:00 PM",
+    /** Showroom on Google Maps (Get directions) */
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Vellum+Cycles+ML+Quezon+St+Cabancalan+Cebu+City"
   },
 
   /** Leave a value "" to hide that icon. Also used as "sameAs" in JSON-LD. */
   socials: {
-    facebook: "https://facebook.com/",
-    instagram: "https://instagram.com/",
+    instagram: "https://instagram.com/vellumcycles",
+    facebook: "https://facebook.com/vellumcycles",
+    /** * Placeholder: TikTok handle not confirmed (PRD open question 1) */
     tiktok: "",
-    linkedin: "https://linkedin.com/",
-    youtube: ""
+    /** * Placeholder: Strava club not confirmed (PRD open question 1) */
+    strava: ""
   },
 
   /**
@@ -67,20 +72,19 @@ export const siteConfig = {
    * LocalBusiness, ProfessionalService, Store, Restaurant, CafeOrCoffeeShop, MedicalClinic,
    * Dentist, BeautySalon, RealEstateAgent, LegalService, AccountingService, EducationalOrganization.
    */
-  businessType: "ProfessionalService",
-  /** Rough price level for Google, e.g. "₱", "₱₱", "₱₱₱". "" to omit. */
-  priceRange: "₱₱",
+  businessType: "Store",
+  /** Prices are never shown on this site, so none is claimed here either. */
+  priceRange: "",
 
   legal: {
     /** Registered business name for the legal pages */
-    companyName: "zo-stack",
+    companyName: "Vellum Cycles",
     jurisdictionCountry: "the Republic of the Philippines",
     serverLocation: "Singapore and the United States",
-    privacyEffectiveDate: "October 4, 2026",
-    termsEffectiveDate: "October 4, 2026"
+    privacyEffectiveDate: "October 7, 2026",
+    termsEffectiveDate: "October 7, 2026"
   }
 } as const;
 
-/** Main call to action: Messenger if set, otherwise email. */
-export const PRIMARY_CONTACT_HREF =
-  siteConfig.contact.messenger || `mailto:${siteConfig.contact.email}`;
+/** Main call to action: the Instagram DM (PRD scope rule: every CTA deep-links to socials). */
+export const PRIMARY_CONTACT_HREF = siteConfig.contact.instagramDm;

@@ -1,0 +1,380 @@
+note: You are running `vp check` as a Vite+ built-in command. If you meant to run the check npm script, use `vpr check` instead.
+error: Lint or type issues found
+! unicorn(no-array-sort): Use `Array#toSorted()` instead of `Array#sort()`.
+    ,-[apps/web/src/entities/bike-models/fuerza/sweep-tube.ts:69:25]
+ 68 |   }
+ 69 |   const uList = [...us].sort((p, q) => p - q);
+    :                         ^^^^
+ 70 | 
+    `----
+  help: `Array#sort()` mutates the original array. Use `Array#toSorted()` to return a new sorted array without modifying the original.
+
+  x typescript(no-restricted-types): Do not use `Record<string, unknown>` as a type
+    ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:22:14]
+ 21 |   sockets: Record<string, THREE.Object3D>;
+ 22 |   colliders: Record<string, unknown>;
+    :              ^^^^^^^^^^^^^^^^^^^^^^^
+ 23 |   destructionGroups: Record<string, THREE.Object3D[]>;
+    `----
+  help: Parse at the earliest, nearest I/O boundary into a specific domain type with the owner's existing validator (otherwise Zod). Keep one-off schemas inline; extract only for reuse.
+
+  x typescript(no-restricted-types): Do not use `Record<string, unknown>` as a type
+    ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:26:27]
+ 25 | 
+ 26 | type SculptMaterialSpec = Record<string, unknown>;
+    :                           ^^^^^^^^^^^^^^^^^^^^^^^
+ 27 | 
+    `----
+  help: Parse at the earliest, nearest I/O boundary into a specific domain type with the owner's existing validator (otherwise Zod). Keep one-off schemas inline; extract only for reuse.
+
+  x typescript(no-restricted-types): Do not use `Record<string, unknown>` as a type
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:119:29]
+ 118 |   if (value && typeof value === "object") {
+ 119 |     const record = value as Record<string, unknown>;
+     :                             ^^^^^^^^^^^^^^^^^^^^^^^
+ 120 |     for (const key of keys) {
+     `----
+  help: Parse at the earliest, nearest I/O boundary into a specific domain type with the owner's existing validator (otherwise Zod). Keep one-off schemas inline; extract only for reuse.
+
+  x typescript(no-restricted-types): Do not use `Record<string, unknown>` as a type
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:238:26]
+ 237 |     if (!item || typeof item !== "object") return [];
+ 238 |     const band = item as Record<string, unknown>;
+     :                          ^^^^^^^^^^^^^^^^^^^^^^^
+ 239 |     const frequency = typeof band.frequency === "number" ? band.frequency : 0;
+     `----
+  help: Parse at the earliest, nearest I/O boundary into a specific domain type with the owner's existing validator (otherwise Zod). Keep one-off schemas inline; extract only for reuse.
+
+  x typescript(no-restricted-types): Do not use `Record<string, unknown>` as a type
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:421:24]
+ 420 |   if (!maps || typeof maps !== "object") return null;
+ 421 |   const map = (maps as Record<string, unknown>)[channel];
+     :                        ^^^^^^^^^^^^^^^^^^^^^^^
+ 422 |   if (!map || typeof map !== "object") return null;
+     `----
+  help: Parse at the earliest, nearest I/O boundary into a specific domain type with the owner's existing validator (otherwise Zod). Keep one-off schemas inline; extract only for reuse.
+
+  x typescript(no-restricted-types): Do not use `Record<string, unknown>` as a type
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:423:25]
+ 422 |   if (!map || typeof map !== "object") return null;
+ 423 |   const record = map as Record<string, unknown>;
+     :                         ^^^^^^^^^^^^^^^^^^^^^^^
+ 424 |   const url = typeof record.url === "string" && record.url.trim() ? record.url : record.path;
+     `----
+  help: Parse at the earliest, nearest I/O boundary into a specific domain type with the owner's existing validator (otherwise Zod). Keep one-off schemas inline; extract only for reuse.
+
+  x typescript(no-restricted-types): Do not use `Record<string, unknown>` as a type
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:751:32]
+ 750 |   if (!attachment || typeof attachment !== "object") return null;
+ 751 |   const record = attachment as Record<string, unknown>;
+     :                                ^^^^^^^^^^^^^^^^^^^^^^^
+ 752 |   const start = readVector3(record.localStart, [0, 0, 0]);
+     `----
+  help: Parse at the earliest, nearest I/O boundary into a specific domain type with the owner's existing validator (otherwise Zod). Keep one-off schemas inline; extract only for reuse.
+
+  x typescript(no-restricted-types): Do not use `Record<string, unknown>` as a type
+      ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:2688:20]
+ 2687 |   const sockets: Record<string, THREE.Object3D> = {};
+ 2688 |   const colliders: Record<string, unknown> = {};
+      :                    ^^^^^^^^^^^^^^^^^^^^^^^
+ 2689 |   const destructionGroups: Record<string, THREE.Object3D[]> = {};
+      `----
+  help: Parse at the earliest, nearest I/O boundary into a specific domain type with the owner's existing validator (otherwise Zod). Keep one-off schemas inline; extract only for reuse.
+
+  ! unicorn(no-array-reverse): Use `Array#toReversed()` instead of `Array#reverse()`.
+     ,-[apps/web/src/entities/bike-models/fuerza/create-fuerza-model.ts:733:27]
+ 732 |   const left = mirrorZ(half, -1);
+ 733 |   const right = [...half].reverse();
+     :                           ^^^^^^^
+ 734 |   part.add(
+     `----
+  help: `Array#reverse()` mutates the original array. Use `Array#toReversed()` to return a new reversed array without modifying the original.
+
+  ! eslint(no-console): Unexpected console statement.
+    ,-[context/3d/terreno/tools/capture.mjs:18:31]
+ 17 |   page.on("console", (m) => {
+ 18 |     if (m.type() === "error") console.log("console error:", m.text());
+    :                               ^^^^^^^^^^^
+ 19 |   });
+    `----
+  help: Supported methods are: debug.
+
+  ! eslint(no-console): Unexpected console statement.
+    ,-[context/3d/terreno/tools/capture.mjs:20:31]
+ 19 |   });
+ 20 |   page.on("pageerror", (e) => console.log("pageerror:", e.message));
+    :                               ^^^^^^^^^^^
+ 21 |   for (const view of ["side", "three-quarter"]) {
+    `----
+  help: Supported methods are: debug.
+
+  ! eslint(no-console): Unexpected console statement.
+    ,-[context/3d/terreno/tools/capture.mjs:85:3]
+ 84 |   writeFileSync(`${OUT}/${TAG}-nds.png`, Buffer.from(dataUrl[1].split(",")[1], "base64"));
+ 85 |   console.log("stats", JSON.stringify(await page.evaluate(() => window.__stats)));
+    :   ^^^^^^^^^^^
+ 86 |   await page.close();
+    `----
+  help: Supported methods are: debug.
+
+  ! eslint(no-console): Unexpected console statement.
+    ,-[apps/web/.fuerza-capture.mjs:25:5]
+ 24 |     await page.locator("[data-testid=bike-canvas]").screenshot({ path: `${prefix}-${v}.png` });
+ 25 |     console.log(v, JSON.stringify(stats));
+    :     ^^^^^^^^^^^
+ 26 |   }
+    `----
+  help: Supported methods are: debug.
+
+  ! eslint(no-console): Unexpected console statement.
+    ,-[apps/web/.fuerza-capture.mjs:27:3]
+ 26 |   }
+ 27 |   console.log(logs.filter((l) => !l.startsWith("debug") && !l.includes("[vite]")).join("\n"));
+    :   ^^^^^^^^^^^
+ 28 | } finally {
+    `----
+  help: Supported methods are: debug.
+
+  x typescript(TS2307): Cannot find module 'three' or its corresponding type declarations.
+   ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:1:24]
+ 1 | import * as THREE from "three";
+   :                        ^^^^^^^
+ 2 | import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+   `----
+
+  x typescript(TS2307): Cannot find module 'three/examples/jsm/controls/OrbitControls.js' or its corresponding type declarations.
+   ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:2:31]
+ 1 | import * as THREE from "three";
+ 2 | import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+   :                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 3 | import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+   `----
+
+  x typescript(TS2307): Cannot find module 'three/examples/jsm/environments/RoomEnvironment.js' or its corresponding type declarations.
+   ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:3:33]
+ 2 | import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+ 3 | import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+   :                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 4 | import { BokehPass } from "three/examples/jsm/postprocessing/BokehPass.js";
+   `----
+
+  x typescript(TS2307): Cannot find module 'three/examples/jsm/postprocessing/BokehPass.js' or its corresponding type declarations.
+   ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:4:27]
+ 3 | import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+ 4 | import { BokehPass } from "three/examples/jsm/postprocessing/BokehPass.js";
+   :                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 5 | import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+   `----
+
+  x typescript(TS2307): Cannot find module 'three/examples/jsm/postprocessing/EffectComposer.js' or its corresponding type declarations.
+   ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:5:32]
+ 4 | import { BokehPass } from "three/examples/jsm/postprocessing/BokehPass.js";
+ 5 | import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+   :                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 6 | import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+   `----
+
+  x typescript(TS2307): Cannot find module 'three/examples/jsm/postprocessing/RenderPass.js' or its corresponding type declarations.
+   ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:6:28]
+ 5 | import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+ 6 | import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+   :                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 7 | import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+   `----
+
+  x typescript(TS2307): Cannot find module 'three/examples/jsm/postprocessing/UnrealBloomPass.js' or its corresponding type declarations.
+   ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:7:33]
+ 6 | import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+ 7 | import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+   :                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 8 | 
+   `----
+
+  x typescript(TS2339): Property 'palette' does not exist on type '{}'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:147:40]
+ 146 | function materialPalette(spec: SculptMaterialSpec): string[] {
+ 147 |   const palette = spec.colorVariation?.palette;
+     :                                        ^^^^^^^
+ 148 |   if (Array.isArray(palette) && palette.length > 0) {
+     `----
+
+  x typescript(TS2339): Property 'secondary' does not exist on type '{}'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:151:34]
+ 150 |   }
+ 151 |   const secondary = spec.albedo?.secondary;
+     :                                  ^^^^^^^^^
+ 152 |   const colors = [
+     `----
+
+  x typescript(TS2339): Property 'dominant' does not exist on type '{}'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:153:50]
+ 152 |   const colors = [
+ 153 |     spec.baseColor ?? spec.color ?? spec.albedo?.dominant,
+     :                                                  ^^^^^^^^
+ 154 |     ...(Array.isArray(secondary) ? secondary : [])
+     `----
+
+  x typescript(TS2339): Property 'repeat' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:382:43]
+ 381 |       : {};
+ 382 |   const repeat = Array.isArray(projection.repeat) ? projection.repeat : [2, 2];
+     :                                           ^^^^^^
+ 383 |   texture.colorSpace = colorSpace;
+     `----
+
+  x typescript(TS2339): Property 'repeat' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:382:64]
+ 381 |       : {};
+ 382 |   const repeat = Array.isArray(projection.repeat) ? projection.repeat : [2, 2];
+     :                                                                ^^^^^^
+ 383 |   texture.colorSpace = colorSpace;
+     `----
+
+  x typescript(TS2339): Property 'anisotropy' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:392:56]
+ 391 |     1,
+ 392 |     Math.round(options.textureAnisotropy ?? projection.anisotropy ?? 8)
+     :                                                        ^^^^^^^^^^
+ 393 |   );
+     `----
+
+  x typescript(TS2339): Property 'usable' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:410:17]
+ 409 |   if (!reference || typeof reference !== "object") return null;
+ 410 |   if (reference.usable === false) return null;
+     :                 ^^^^^^
+ 411 |   const confidence =
+     `----
+
+  x typescript(TS2339): Property 'confidence' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:412:22]
+ 411 |   const confidence =
+ 412 |     typeof reference.confidence === "number"
+     :                      ^^^^^^^^^^
+ 413 |       ? reference.confidence
+     `----
+
+  x typescript(TS2339): Property 'confidence' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:413:19]
+ 412 |     typeof reference.confidence === "number"
+ 413 |       ? reference.confidence
+     :                   ^^^^^^^^^^
+ 414 |       : typeof reference.estimatedFidelity === "number"
+     `----
+
+  x typescript(TS2339): Property 'estimatedFidelity' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:414:26]
+ 413 |       ? reference.confidence
+ 414 |       : typeof reference.estimatedFidelity === "number"
+     :                          ^^^^^^^^^^^^^^^^^
+ 415 |         ? reference.estimatedFidelity
+     `----
+
+  x typescript(TS2339): Property 'estimatedFidelity' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:415:21]
+ 414 |       : typeof reference.estimatedFidelity === "number"
+ 415 |         ? reference.estimatedFidelity
+     :                     ^^^^^^^^^^^^^^^^^
+ 416 |         : 0;
+     `----
+
+  x typescript(TS2339): Property 'targetThreshold' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:417:38]
+ 416 |         : 0;
+ 417 |   const threshold = typeof reference.targetThreshold === "number" ? reference.targetThreshold : 0.7;
+     :                                      ^^^^^^^^^^^^^^^
+ 418 |   if (confidence < threshold) return null;
+     `----
+
+  x typescript(TS2339): Property 'targetThreshold' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:417:79]
+ 416 |         : 0;
+ 417 |   const threshold = typeof reference.targetThreshold === "number" ? reference.targetThreshold : 0.7;
+     :                                                                               ^^^^^^^^^^^^^^^
+ 418 |   if (confidence < threshold) return null;
+     `----
+
+  x typescript(TS2339): Property 'maps' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:419:26]
+ 418 |   if (confidence < threshold) return null;
+ 419 |   const maps = reference.maps;
+     :                          ^^^^
+ 420 |   if (!maps || typeof maps !== "object") return null;
+     `----
+
+  x typescript(TS2339): Property 'repeat' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:439:43]
+ 438 |       : {};
+ 439 |   const repeat = Array.isArray(projection.repeat) ? projection.repeat : [1, 1];
+     :                                           ^^^^^^
+ 440 |   texture.colorSpace = colorSpace;
+     `----
+
+  x typescript(TS2339): Property 'repeat' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:439:64]
+ 438 |       : {};
+ 439 |   const repeat = Array.isArray(projection.repeat) ? projection.repeat : [1, 1];
+     :                                                                ^^^^^^
+ 440 |   texture.colorSpace = colorSpace;
+     `----
+
+  x typescript(TS2339): Property 'anisotropy' does not exist on type 'object'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:449:56]
+ 448 |     1,
+ 449 |     Math.round(options.textureAnisotropy ?? projection.anisotropy ?? 8)
+     :                                                        ^^^^^^^^^^
+ 450 |   );
+     `----
+
+  x typescript(TS2322): Type 'unknown' is not assignable to type 'ColorGradientSpec | undefined'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:535:9]
+ 534 |   );
+ 535 |   const colorGradient: ColorGradientSpec | undefined = spec.colorGradient;
+     :         ^^^^^^^^^^^^^
+ 536 |   for (let y = 0; y < size; y += 1) {
+     `----
+
+  x typescript(TS2339): Property 'profileId' does not exist on type '{}'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:718:57]
+ 717 |   material.userData.referenceMaterialId =
+ 718 |     spec.referenceMaterialId ?? spec.materialReference?.profileId ?? null;
+     :                                                         ^^^^^^^^^
+ 719 |   material.userData.materialEvidence = spec.materialEvidence ?? null;
+     `----
+
+  x typescript(TS2339): Property 'validationViews' does not exist on type '{}'.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:720:63]
+ 719 |   material.userData.materialEvidence = spec.materialEvidence ?? null;
+ 720 |   material.userData.validationViews = spec.materialReference?.validationViews ?? [];
+     :                                                               ^^^^^^^^^^^^^^^
+ 721 |   material.needsUpdate = true;
+     `----
+
+  ! typescript(no-base-to-string): 'band.pattern ?? ""' will use Object's default stringification format ('[object Object]') when stringified.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:243:35]
+ 242 |     const stretch = Array.isArray(band.stretch) ? band.stretch : [1, 1];
+ 243 |     const description = `${String(band.pattern ?? "")} ${String(band.role ?? "")}`.toLowerCase();
+     :                                   ^^^^^^^^^^^^^^^^^^
+ 244 |     return [
+     `----
+  help: Consider picking a property (e.g. `user.name`), using a formatter (or `JSON.stringify`), or implementing a custom `toString()`/`toLocaleString()` on the type.
+
+  ! typescript(no-base-to-string): 'band.role ?? ""' will use Object's default stringification format ('[object Object]') when stringified.
+     ,-[context/3d/fuerza/generated/createFuerzaBlockout.ts:243:65]
+ 242 |     const stretch = Array.isArray(band.stretch) ? band.stretch : [1, 1];
+ 243 |     const description = `${String(band.pattern ?? "")} ${String(band.role ?? "")}`.toLowerCase();
+     :                                                                 ^^^^^^^^^^^^^^^
+ 244 |     return [
+     `----
+  help: Consider picking a property (e.g. `user.name`), using a formatter (or `JSON.stringify`), or implementing a custom `toString()`/`toLocaleString()` on the type.
+
+  x typescript(TS1294): This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+     ,-[apps/web/src/entities/bike-models/fuerza/create-fuerza-model.ts:133:15]
+ 132 |   private byMaterial = new Map<THREE.Material, THREE.BufferGeometry[]>();
+ 133 |   constructor(readonly group: THREE.Group) {}
+     :               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 134 | 
+     `----
+
+Found 36 errors and 9 warnings in 164 files (16.8s, 8 threads)
+pass: Formatting completed for checked files (18.1s)

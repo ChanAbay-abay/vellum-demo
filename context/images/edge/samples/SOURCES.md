@@ -1,0 +1,12 @@
+# Edge sample photos (NOT Vellum - must be labelled "Sample photo" on site)
+
+All from Pexels (Pexels License: free for commercial use, no attribution required). Downloaded via images.pexels.com, 1600-2400px. Brand marks checked at contact-sheet scale only; zoom before full-bleed use.
+
+| File                             | Source page                                                                             | Photographer    | License | Size      | Description                                                     | Visible brand marks               |
+| -------------------------------- | --------------------------------------------------------------------------------------- | --------------- | ------- | --------- | --------------------------------------------------------------- | --------------------------------- |
+| sample-road-studio-side-1.jpg    | https://www.pexels.com/photo/monochrome-photo-of-parked-black-bicycle-13415390/         | Mathias Reding  | Pexels  | 2400x1600 | Black road race bike, clean side profile, monochrome            | tiny frame decal                  |
+| sample-road-black-red-wall-2.jpg | https://www.pexels.com/photo/black-and-red-road-bike-leaning-on-concrete-ledge-9651657/ | Bayram Er       | Pexels  | 2400x1600 | Black/red road bike against black brick wall, full side profile | small decals                      |
+| sample-road-dusk-ocean-3.jpg     | https://www.pexels.com/photo/sleek-road-bike-by-the-ocean-at-dusk-29217211/             | Hao Liang       | Pexels  | 1600x2400 | Dark road bike silhouette by the sea at dusk                    | none readable                     |
+| sample-road-stone-wall-4.jpg     | https://www.pexels.com/photo/sleek-custom-road-bike-against-stone-wall-29019964/        | Hao Liang       | Pexels  | 1920x2400 | Black road bike with tan tyres against stone wall               | small teal decals                 |
+| sample-road-peloton-5.jpg        | https://www.pexels.com/photo/peloton-in-cyclist-race-24244151/                          | Didier VEILLON  | Pexels  | 2400x1600 | Peloton on a country road                                       | kit logos small                   |
+| sample-road-race-group-6.jpg     | https://www.pexels.com/photo/professional-cyclists-racing-on-a-sunny-day-38463222/      | Christian Palau | Pexels  | 2400x1350 | Pro riders in matching team kit, close race group               | team kit sponsor logos on jerseys |

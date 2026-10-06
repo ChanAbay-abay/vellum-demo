@@ -1,0 +1,4 @@
+side 0.21
+three-quarter 0.2858
+front 0.0451
+top 0.0618

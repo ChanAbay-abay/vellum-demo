@@ -1,0 +1,30 @@
+[
+  {
+    "admitted": true,
+    "reasons": [],
+    "provenance": {
+      "viewpoint": "side",
+      "sourcePath": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/images/fuerza/retro-greige/fuerza-retro-greige-bike.jpg",
+      "width": 1080,
+      "height": 1351,
+      "foregroundCoverage": 0.6471,
+      "largestComponentFraction": 0.9992,
+      "pHash": 17255733209998337160,
+      "duplicateOfHash": null
+    }
+  },
+  {
+    "admitted": true,
+    "reasons": [],
+    "provenance": {
+      "viewpoint": "rear-three-quarter",
+      "sourcePath": "/Users/chanchan/Programming/Iridel/demos/vellum-demo/context/images/fuerza/retro-greige/fuerza-retro-greige-bike-alt.jpg",
+      "width": 1536,
+      "height": 1920,
+      "foregroundCoverage": 0.7253,
+      "largestComponentFraction": 0.9984,
+      "pHash": 16710873257340329764,
+      "duplicateOfHash": null
+    }
+  }
+]

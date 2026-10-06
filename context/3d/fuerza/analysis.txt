@@ -1,0 +1,50 @@
+Fuerza Disc - Retro Greige: image analysis (img2threejs layered protocol evidence)
+
+Primary ref: images/fuerza/retro-greige/fuerza-retro-greige-bike.jpg (1080x1351, drive-side profile).
+Secondary: -bike-alt.jpg (rear 3/4 drive side), -frameset.jpg (bare frameset profile; BB shell paint),
+-headtube.jpg (front 3/4: head-tube badge, "Fuerza" TT script, fork crown), details/stripe + dropout macros.
+
+L1 identification: complete aero/endurance road bicycle, disc brake, 700c deep carbon wheels, 2x
+electronic groupset (SRAM Rival AXS style), integrated bar/stem. primaryDomain=object. conf 0.97.
+
+L2 form: bilateral (XY) symmetry except drivetrain on +Z. Scale: wheel radius 197px = 0.343 m ->
+579 px/m; ground y=1017px. Landmarks px -> model m (origin ground under BB, +X front):
+ rear axle (248.5,820) -> (-0.408,0.343)
+ BB spindle (485,860) -> (0,0.271)
+ front axle (823,818) -> (0.584,0.343)
+ head tube top axis (707,540) -> (0.383,0.824); bottom (737,622) -> (0.435,0.682)
+ TT/seat mast junction (395,585) -> (-0.155,0.746)
+ seatstay/seat tube junction (412,635) -> (-0.126,0.660)
+ seatpost clamp (358,465) -> (-0.219,0.953)
+ saddle tail/nose top (285,433)/(445,443) -> (-0.345,1.009)/(-0.069,0.991)
+ bar tops (690,500)->(840,478) = (0.354,0.893)->(0.613,0.931); drop ends (730,572) -> (0.423,0.769)
+ chainring outer r 58px = 0.100 m; crank 99px = 0.172 m
+ wheelbase 0.992, chainstay 0.414, BB drop 72mm, HTA ~73, STA ~72.5.
+
+L3 decomposition: macro frame/fork/wheel-rear/wheel-front/drivetrain/cockpit/seatpost-saddle.
+ meso: TT, aero DT, HT, aero ST (wheel cutout), dropped seatstays, chainstays, BB shell, dropouts;
+ wheel = 50mm rim + 28mm tyre + 24 spokes + hub + 160 rotor; drivetrain = 2 rings+spider, cranks,
+ 12s cassette, RD+battery, FD, chain; cockpit = integrated stem/bar, drops, hoods+levers, top cap;
+ seatpost = aero post, clamp, rails, saddle shell w/ cutout.
+ micro: bottle bolts (2 DT, 2 ST), V badges (fork, chainstay, HT), wordmark, valve stems, axle ends,
+ calipers.
+
+L4 relations: TT butts HT and seat mast; seatstays attach to ST at 0.66 m (dropped, below TT);
+ stays meet at dropout/axle; steerer inside HT; stem clamps steerer; post inside mast; crank about
+ BB spindle; cassette+rotor coaxial with hub.
+
+L5 materials: white frame paint gloss clearcoat (rough 0.25, cc 1); black matte carbon ST/mast/post
+ (#151515 rough .55); satin carbon rims (#0e0e0e .45); tyre rubber (#111 .85); steel rotors/cassette
+ (metal 1 rough .35); tape/saddle/hoods black rough .7-.8.
+
+L6 colour (de-lit est.): white #EDEBE6, burgundy #8E2533, red #B23B36, orange-red #D4552E,
+ orange #E68A2E, wordmark #A62A3A. TT stripes rear->front: burgundy(long), red, orange-red, orange,
+ white. Chainstay from BB rearward: burgundy shell, burgundy, orange-red, orange, white.
+
+L7 identity: (1) dropped seatstays into black aero ST below TT (2) black ST/cluster/post vs white
+ frame (3) 4-band retro stripe TT seat end + chainstay BB end (4) big slanted "vellum" DT wordmark
+ reading up toward HT (5) deep black rims (6) white curved tapered fork w/ burgundy badge band
+ (7) integrated black bar/stem (8) burgundy BB shell.
+
+L8 uncertainty: non-drive side hidden (assumed symmetric, caliper -Z); tube sections inferred from
+ 3/4 view; tooth/cog detail approximated; stripe wrap on tube underside inferred.

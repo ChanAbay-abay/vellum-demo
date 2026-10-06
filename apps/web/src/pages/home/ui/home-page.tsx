@@ -1,33 +1,27 @@
-import { SectionDots } from "@zo-stack/ui/components/section-dots";
+import { ClosingCta } from "@/shared/ui/closing-cta";
 
-import { CollectionSection } from "@/pages/home/ui/collection-section";
-import { GallerySection } from "@/pages/home/ui/gallery-section";
-import { HeroSection } from "@/pages/home/ui/hero-section";
-import { JournalSection } from "@/pages/home/ui/journal-section";
-import { StudioSection } from "@/pages/home/ui/studio-section";
+import { CLOSING } from "@/pages/home/config/home.content";
+import { HeritageStrip } from "@/pages/home/ui/heritage-strip-section";
+import { Hero } from "@/pages/home/ui/hero-section";
+import { Intro } from "@/pages/home/ui/intro-section";
+import { MerchRow } from "@/pages/home/ui/merch-row-section";
+import { ModelsSplit } from "@/pages/home/ui/models-split-section";
+import { Showroom } from "@/pages/home/ui/showroom-section";
 
-/** Ids must match each section's `id`. Drives the dots on the right edge. */
-const SECTIONS = [
-  { id: "top", label: "the top" },
-  { id: "studio", label: "the studio" },
-  { id: "collection", label: "the collection" },
-  { id: "work", label: "our work" },
-  { id: "journal", label: "the journal" }
-];
-
-/** Sections are plain components: reorder, delete, or duplicate them freely. */
+/**
+ * Home, in PRD order. SiteNav and SiteFooter are mounted around every page by RootLayout.
+ * Grounds (DESIGN.md §4, hero per §6 D): bone → paper → ink → sand → paper → bone → photo closing CTA → ink footer.
+ */
 export function HomePage() {
   return (
     <>
-      <SectionDots
-        className="top-1/2 right-[1.875rem] hidden -translate-y-1/2 lg:block"
-        sections={SECTIONS}
-      />
-      <HeroSection />
-      <StudioSection />
-      <CollectionSection />
-      <GallerySection />
-      <JournalSection />
+      <Hero />
+      <Intro />
+      <ModelsSplit />
+      <MerchRow />
+      <HeritageStrip />
+      <Showroom />
+      <ClosingCta {...CLOSING} />
     </>
   );
 }

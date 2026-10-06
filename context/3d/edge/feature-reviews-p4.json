@@ -1,0 +1,32 @@
+[
+  {
+    "id": "frame-silhouette",
+    "score": 0.72,
+    "notes": "Diamond frame, sloping TT, faceted chamfered tubes read correctly; TT->HT junction in reference is deeper/flared, ours is a thinner straight tube."
+  },
+  {
+    "id": "white-black-scheme",
+    "score": 0.82,
+    "notes": "White frame, black fork, black seat tube/post with light band, charcoal rear TT, grey TT panel all present."
+  },
+  {
+    "id": "dt-wordmark",
+    "score": 0.8,
+    "notes": "Brand SVG decal; NDS reads HT->BB with letter tops to the upper side, matching the photo. DS orientation inferred."
+  },
+  {
+    "id": "deep-rims-tanwall",
+    "score": 0.85,
+    "notes": "~50 mm black rims with tan walls match; spoke count approximate."
+  },
+  {
+    "id": "rim-brakes",
+    "score": 0.65,
+    "notes": "Silver calipers present front (ahead of crown) and rear (on stay bridge); simplified arm shapes."
+  },
+  {
+    "id": "cockpit-black",
+    "score": 0.6,
+    "notes": "Black stem/bar/hoods and housing loops; drops and lever shapes inferred, cable routing approximate."
+  }
+]

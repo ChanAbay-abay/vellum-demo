@@ -1,0 +1,27 @@
+[
+  {
+    "id": "wheel-tyre-identity",
+    "score": 0.82,
+    "critique": "tan walls/black tread/black rims/28 black spokes match; no sidewall Vittoria text, no rim decals"
+  },
+  {
+    "id": "frame-geometry",
+    "score": 0.8,
+    "critique": "landmark reprojection mean 7.7 px / max 14.6 px through solved camera; HT junction is a flat-sided web, not a moulded flare"
+  },
+  {
+    "id": "drivetrain-identity",
+    "score": 0.76,
+    "critique": "silver crank/ring/cassette + gold chain + black RD present; RD is a simplified slab; cassette washes out white under lab env"
+  },
+  {
+    "id": "cockpit-fork",
+    "score": 0.75,
+    "critique": "fork, level long stem, flat bar, grips present; Ergon grip shape and lever detail approximated"
+  },
+  {
+    "id": "frame-finish",
+    "score": 0.72,
+    "critique": "black satin carbon w/ grey VELLUM + copper ST band; lab lighting renders it grey-gunmetal rather than photo near-black; UD fibre is an anisotropy cue only"
+  }
+]

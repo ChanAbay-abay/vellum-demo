@@ -1,0 +1,373 @@
+{
+  "targetName": "Vellum Terreno XC hardtail",
+  "sourceImage": "reference.jpg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "xc-hardtail-mountain-bicycle",
+      "primaryDomain": "object",
+      "formLanguage": ["hard-surface", "mechanical"],
+      "structureKind": ["compound object", "articulated assembly", "repeated modules"],
+      "motionPotential": ["articulated", "detachable"],
+      "materialFamilies": ["carbon composite", "metal", "rubber", "plastic"],
+      "notes": "Complete bike, drive-side profile; front at image right == model +X with camera on +Z."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 2,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 7,
+        "mesoComponents": 30,
+        "microFeatureGroups": 8,
+        "materialLayers": 12,
+        "repetitionSystems": 5
+      },
+      "reasoning": [
+        "Spokes (56), cassette cogs (12), teeth, tread knobs are repetition systems",
+        "7 named macro assemblies, ~30 meso parts",
+        "thin tubes/spokes make silhouette highly interrupted"
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": ["macro", "meso", "micro"],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "non-drive side layout (rotors/caliper) inferred",
+      "bar width assumed 0.74 m",
+      "tube Z widths inferred from XC norms + secondary photo",
+      "rear caliper hidden"
+    ],
+    "detailInventory": {
+      "scanMethod": "component-zones",
+      "targetMinDetails": 10,
+      "note": "Enumerate every identity-defining small detail before authoring the spec. Each detail must map to a component.localFeatures entry or material.localOverrides entry, never prose only. Use forge/stage1_intake/build_detail_inventory.py to scan zones.",
+      "details": [
+        {
+          "id": "tan-sidewall",
+          "zone": "wheel-front/wheel-rear tyre",
+          "description": "tan skinwall sidewall band between black tread band and rim",
+          "mapsTo": "wheel-front/wheel-rear"
+        },
+        {
+          "id": "tread-band",
+          "zone": "tyre",
+          "description": "black knobby tread crown band ~18 mm visible in profile",
+          "mapsTo": "tyre"
+        },
+        {
+          "id": "dt-logo",
+          "zone": "frame down tube",
+          "description": "large grey VELLUM wordmark along down tube",
+          "mapsTo": "frame"
+        },
+        {
+          "id": "copper-band",
+          "zone": "frame seat tube",
+          "description": "copper metallic accent band below TT/ST cluster",
+          "mapsTo": "frame"
+        },
+        {
+          "id": "diamond-dt",
+          "zone": "frame down tube",
+          "description": "oversize diamond-section down tube",
+          "mapsTo": "frame"
+        },
+        {
+          "id": "sloping-tt",
+          "zone": "frame top tube",
+          "description": "top tube slopes ~19deg to low seat cluster; seatstays join there",
+          "mapsTo": "frame"
+        },
+        {
+          "id": "silver-crank",
+          "zone": "drivetrain",
+          "description": "silver crank arms + narrow-wide silver chainring, gold spindle",
+          "mapsTo": "drivetrain"
+        },
+        {
+          "id": "big-cassette",
+          "zone": "drivetrain",
+          "description": "12-speed 10-52 silver cassette with windowed big cogs",
+          "mapsTo": "drivetrain"
+        },
+        {
+          "id": "gold-chain",
+          "zone": "drivetrain",
+          "description": "gold chain loop ring->cassette, lower run through derailleur",
+          "mapsTo": "drivetrain"
+        },
+        {
+          "id": "rd-direct",
+          "zone": "drivetrain",
+          "description": "black direct-mount derailleur below axle",
+          "mapsTo": "drivetrain"
+        },
+        {
+          "id": "spoke-lacing",
+          "zone": "wheels",
+          "description": "28 black spokes per wheel, crossed",
+          "mapsTo": "wheels"
+        },
+        {
+          "id": "rotor-front",
+          "zone": "fork/wheel-front",
+          "description": "silver 160 mm rotor + caliper on NDS",
+          "mapsTo": "fork/wheel-front"
+        },
+        {
+          "id": "fork-sid",
+          "zone": "fork",
+          "description": "black fork, stanchion legs, blue top cap, grey graphic on lower",
+          "mapsTo": "fork"
+        },
+        {
+          "id": "slammed-stem",
+          "zone": "cockpit",
+          "description": "long black stem, low, integrated headset cap",
+          "mapsTo": "cockpit"
+        },
+        {
+          "id": "saddle",
+          "zone": "seatpost-saddle",
+          "description": "short-nose black saddle on black slim post with collar",
+          "mapsTo": "seatpost-saddle"
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "reference.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Side render at lab camera matches reference wheel size/wheelbase/BB/head angle/saddle+bar heights within ~3% of wheel diameter",
+      "Tan-wall tyres, black UD carbon satin frame, silver drivetrain + gold chain read correctly",
+      "three-quarter view reads as a real bike: tube widths, bar width, both crank arms, NDS rotors",
+      "<150k tris, few draw calls (instanced/merged repeated parts)"
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 7,
+      "mesoComponents": 20,
+      "microFeatureGroups": 5,
+      "materialLayers": 8,
+      "repetitionSystems": 3,
+      "reviewViewpoints": 2
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Vellum Terreno XC hardtail bicycle wheel spokes tyre carbon fiber clearcoat chain sprocket cassette tube frame weld",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.pbr-clearcoat",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[4]",
+        "score": 4.908084468589,
+        "snippets": [
+          "Secondary reflective coating layer on top of the base material, simulating varnish, lacquer, or automotive paint. L\u1edbp ph\u1ee7 ph\u1ea3n x\u1ea1 th\u1ee9 c\u1ea5p n\u1eb1m tr\u00ean v\u1eadt li\u1ec7u n\u1ec1n, m\u00f4 ph\u1ecfng vecni, s\u01a1n m\u00e0i ho\u1eb7c s\u01a1n xe h\u01a1i. Recognition cues: A distinct, sharp ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[4]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-boxgeometry-slides-receivers-grips",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[5]",
+        "score": 3.982060806801,
+        "snippets": [
+          "... c\u00e1c c\u1ee5m l\u1eafp r\u00e1p h\u00ecnh ch\u1eef nh\u1eadt/kh\u1ed1i. Recognition cues: Flat-faced, roughly rectangular volume (pistol slide, receiver/frame, grip, panel) D\u1ea5u hi\u1ec7u nh\u1eadn di\u1ec7n: Kh\u1ed1i g\u1ea7n ch\u1eef nh\u1eadt v\u1edbi c\u00e1c m\u1eb7t ph\u1eb3ng (kh\u00f3a n\u00f2ng s\u00fang l\u1ee5c, th\u00e2n/khung s\u00fang, tay ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[5]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-torusgeometry-rings-loops",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[8]",
+        "score": 3.401965238705,
+        "snippets": [
+          "... Talon knife, trigger guard loop, carrying handle D\u1ea5u hi\u1ec7u nh\u1eadn di\u1ec7n: Chi ti\u1ebft v\u00f2ng tr\u00f2n \u2014 v\u00f2ng c\u00e1n l\u01b0\u1ee1i l\u00ea, v\u00f2ng ng\u00f3n tay tr\u00ean dao Talon, v\u00f2ng v\u00e0nh b\u1ea3o v\u1ec7 c\u00f2, tay x\u00e1ch Three.js target: TorusGeometry(radius, tube, radialSegments, tubularSegments)"
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[8]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

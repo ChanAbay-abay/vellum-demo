@@ -16,8 +16,7 @@
     "ui": "vpx shadcn@latest"
   },
   "dependencies": {
-    "@fontsource-variable/inter": "catalog:",
-    "@fontsource/tomorrow": "catalog:",
+    "@fontsource-variable/jost": "catalog:",
     "@tanstack/react-router": "catalog:",
     "@tanstack/react-start": "catalog:",
     "@zo-stack/seo": "workspace:*",
@@ -28,7 +27,9 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-icons": "catalog:",
-    "schema-dts": "catalog:"
+    "schema-dts": "catalog:",
+    "three": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "catalog:",
@@ -43,6 +44,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@types/three": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "@zo-stack/env": "workspace:*",
     "@zo-stack/tsconfig": "workspace:*",

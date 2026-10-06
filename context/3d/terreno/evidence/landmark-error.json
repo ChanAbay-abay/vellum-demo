@@ -1,0 +1,62 @@
+{
+  "rear_axle": {
+    "render_px": [325.1, 823.3],
+    "photo_px": [322, 809],
+    "err_px": 14.6,
+    "err_m": 0.022
+  },
+  "front_axle": {
+    "render_px": [1042.4, 812.7],
+    "photo_px": [1042, 812],
+    "err_px": 0.8,
+    "err_m": 0.001
+  },
+  "bb": {
+    "render_px": [621.2, 866.7],
+    "photo_px": [620, 870],
+    "err_px": 3.5,
+    "err_m": 0.005
+  },
+  "ht_top": {
+    "render_px": [899.0, 426.6],
+    "photo_px": [912, 425],
+    "err_px": 13.1,
+    "err_m": 0.02
+  },
+  "crown": {
+    "render_px": [925.7, 515.7],
+    "photo_px": [938, 518],
+    "err_px": 12.5,
+    "err_m": 0.019
+  },
+  "tt_st": {
+    "render_px": [541.3, 601.5],
+    "photo_px": [550, 600],
+    "err_px": 8.8,
+    "err_m": 0.013
+  },
+  "saddle_nose": {
+    "render_px": [576.0, 383.6],
+    "photo_px": [575, 393],
+    "err_px": 9.4,
+    "err_m": 0.014
+  },
+  "saddle_tail": {
+    "render_px": [399.1, 383.4],
+    "photo_px": [402, 382],
+    "err_px": 3.2,
+    "err_m": 0.005
+  },
+  "bar_clamp": {
+    "render_px": [968.3, 403.2],
+    "photo_px": [968, 407],
+    "err_px": 3.8,
+    "err_m": 0.006
+  },
+  "_summary": {
+    "mean_px": 7.7,
+    "max_px": 14.6,
+    "px_per_m_at_bike": 660,
+    "wheel_dia_px": 488
+  }
+}
