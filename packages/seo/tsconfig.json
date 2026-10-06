@@ -1,0 +1,3 @@
+{
+  "extends": "@zo-stack/tsconfig/tsconfig.base.json"
+}

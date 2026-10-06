@@ -1,0 +1,10 @@
+{
+  "extends": "@zo-stack/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@zo-stack/ui/*": ["./*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

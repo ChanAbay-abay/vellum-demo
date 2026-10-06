@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Worker name in your Cloudflare account. Change it per project.
+  "name": "zo-stack",
+  "compatibility_date": "2026-09-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  }
+  /**
+   * `vp run build:cloudflare` merges this file into .output/server/wrangler.json,
+   * which `wrangler deploy` picks up automatically. Don't set `main` or `assets` here.
+   *
+   * Runtime secrets (only once you enable the database or auth packages):
+   *   wrangler secret put DATABASE_URL
+   *   wrangler secret put BETTER_AUTH_SECRET
+   * VITE_SITE_URL is a build-time variable: set it in Workers Builds > Build variables.
+   */
+}

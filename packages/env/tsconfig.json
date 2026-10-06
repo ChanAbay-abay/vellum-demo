@@ -1,0 +1,6 @@
+{
+  "extends": "@zo-stack/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node", "vite-plus/client"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@zo-stack/auth",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#@/*": "./src/*.ts"
+  },
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "@better-auth/drizzle-adapter": "catalog:",
+    "better-auth": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@zo-stack/env": "workspace:*",
+    "@zo-stack/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@tanstack/react-start": "catalog:",
+    "@zo-stack/db": "workspace:*"
+  }
+}

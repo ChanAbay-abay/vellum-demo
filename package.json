@@ -1,0 +1,53 @@
+{
+  "name": "iridel-demo-template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "vp check",
+    "fix": "vp check --fix",
+    "new-demo": "node scripts/new-demo.ts",
+    "test:breakpoints": "vp run --filter @zo-stack/web test:breakpoints",
+    "test:unit:run": "vp run -r test:unit",
+    "test:e2e:run": "vp run -r test:e2e",
+    "dev": "vp run --filter @zo-stack/web dev",
+    "build": "vp run --filter @zo-stack/web build",
+    "build:cloudflare": "vp run --filter @zo-stack/web build:cloudflare",
+    "deploy:cloudflare": "vp run --filter @zo-stack/web deploy:cloudflare",
+    "prepare": "vp config",
+    "deps": "vpx taze@latest -Ilwr --maturity-period 3",
+    "deps:major": "vpx taze@latest major -Ilwr --maturity-period 3",
+    "tanstack": "vpx @tanstack/cli@latest",
+    "ui": "vp run --filter @zo-stack/ui ui",
+    "ui:web": "vp run --filter @zo-stack/web ui",
+    "db": "vp run --filter @zo-stack/db db",
+    "db:generate": "vp run -w db generate",
+    "db:migrate": "vp run -w db migrate",
+    "db:studio": "vp run -w db studio",
+    "auth:secret": "vpx auth@latest secret",
+    "auth:generate": "vp run --filter @zo-stack/db auth:generate"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@dotenvx/dotenvx": "catalog:",
+    "@tanstack/eslint-plugin-query": "catalog:",
+    "@tanstack/eslint-plugin-router": "catalog:",
+    "@typescript/native-preview": "catalog:",
+    "eslint-plugin-fsd-lint": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "packageManager": "pnpm@12.8.1",
+  "intent": {
+    "skills": [
+      "@tanstack/*"
+    ]
+  }
+}

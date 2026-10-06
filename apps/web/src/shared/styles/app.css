@@ -1,0 +1,54 @@
+@import "@zo-stack/ui/styles/globals.css";
+@source "./";
+
+@import "./fonts.css";
+@import "./theme.css";
+
+/**
+ * Fluid scale: on desktop the root font size grows with the viewport
+ * (≈11px at 1024px, 12.5px at 1280px, 16px at 1900px), so every rem-based size,
+ * from type to spacing, keeps the same proportions on any screen. Mobile stays at 16px.
+ */
+html {
+  font-size: 16px;
+
+  @media (width >= 64rem) {
+    font-size: calc(0.3556rem + 0.537vw);
+  }
+}
+
+:root {
+  /* Header height and page gutter. Sections use these to line up with the header. */
+  --navbar-height: 4.125rem;
+  --gutter: 0.9375rem;
+
+  @media (width >= 64rem) {
+    --gutter: 1.875rem;
+  }
+}
+
+/* Type scale. Every step uses a 1.5 line height. */
+@theme {
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.5;
+  --text-body: 1rem;
+  --text-body--line-height: 1.5;
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.5;
+  --text-subheading: 1.125rem;
+  --text-subheading--line-height: 1.5;
+  --text-heading: 1.625rem;
+  --text-heading--line-height: 1.5;
+  --text-title: 2.125rem;
+  --text-title--line-height: 1.5;
+  --text-display: 3.375rem;
+  --text-display--line-height: 1.5;
+}
+
+/* Small uppercase UI label (nav, buttons, footer links) */
+@utility label {
+  font-size: var(--text-caption);
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,44 @@
+@theme inline {
+  --animate-marquee-x: marquee-x var(--duration, 40s) linear infinite;
+  --animate-marquee-y: marquee-y var(--duration, 40s) linear infinite;
+  --animate-float: float 14s ease-in-out infinite;
+
+  @keyframes marquee-x {
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-y {
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+
+  /* Slow drift for decorative glows */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(4%, -6%) scale(1.08);
+    }
+  }
+
+  @keyframes spinner-leaf-fade {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+@layer utilities {
+  .animate-spinner-leaf-fade {
+    animation: spinner-leaf-fade 800ms linear infinite;
+  }
+}

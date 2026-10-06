@@ -1,0 +1,31 @@
+{
+  "name": "@zo-stack/db",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#@/*": "./src/*.ts"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts"
+  },
+  "scripts": {
+    "db": "pnpm dotenvx run -f ../env/.env -- drizzle-kit",
+    "auth:generate": "pnpm dotenvx run -f ../env/.env -- vpx auth@latest generate --config ../auth/src/generate.ts -y --output ./src/schema/auth.schema.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "catalog:",
+    "postgres": "catalog:"
+  },
+  "devDependencies": {
+    "@dotenvx/dotenvx": "catalog:",
+    "@types/node": "catalog:",
+    "@zo-stack/env": "workspace:*",
+    "@zo-stack/tsconfig": "workspace:*",
+    "drizzle-kit": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@tanstack/react-start": "catalog:"
+  }
+}

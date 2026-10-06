@@ -1,0 +1,22 @@
+{
+  "name": "@zo-stack/env",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#@/*": "./src/*.ts"
+  },
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "@t3-oss/env-core": "catalog:",
+    "std-env": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@zo-stack/tsconfig": "workspace:*",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@zo-stack/ui",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./*": "./*.ts",
+    "./styles/globals.css": "./styles/globals.css",
+    "./components/*": "./components/*.tsx"
+  },
+  "scripts": {
+    "ui": "vpx shadcn@latest"
+  },
+  "dependencies": {
+    "@gsap/react": "catalog:",
+    "class-variance-authority": "catalog:",
+    "cn": "catalog:",
+    "gsap": "catalog:",
+    "lenis": "catalog:",
+    "lucide-react": "catalog:",
+    "motion": "catalog:",
+    "radix-ui": "catalog:",
+    "tw-animate-css": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@zo-stack/tsconfig": "workspace:*",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  }
+}
