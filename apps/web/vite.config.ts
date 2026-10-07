@@ -13,6 +13,13 @@ import { ENV_WEB_ISOMORPHIC } from "@zo-stack/env/web/env.isomorphic";
 
 import { defaultDirectives, responsiveImages } from "./vite/responsive-images";
 
+// Vercel production builds take the project's own production domain: the dashboard's VITE_SITE_URL
+// named vellum-demo.vercel.app, which belongs to an unrelated project, so OG/canonical URLs pointed there
+const siteUrl =
+  process.env.VERCEL_ENV === "production" && process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : ENV_WEB_ISOMORPHIC.VITE_SITE_URL;
+
 export default defineConfig({
   build: {
     rolldownOptions: {
@@ -31,7 +38,7 @@ export default defineConfig({
    * wrong canonical URLs. The validated value is then inlined, which keeps zod out of the client bundle.
    */
   define: {
-    "import.meta.env.VITE_SITE_URL": JSON.stringify(ENV_WEB_ISOMORPHIC.VITE_SITE_URL)
+    "import.meta.env.VITE_SITE_URL": JSON.stringify(siteUrl)
   },
   // Restart the dev server when env files in this directory change
   envDir: resolve(import.meta.dirname, "../../packages/env"),
