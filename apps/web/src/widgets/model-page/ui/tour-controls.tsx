@@ -44,7 +44,7 @@ export function TourControls({
           <ArrowRightIcon className="w-[0.8rem] rotate-180" />
         </button>
         <p
-          className="text-label w-[4rem] text-center whitespace-nowrap tabular-nums md:w-[6rem]"
+          className="text-label w-[4rem] text-center whitespace-nowrap tabular-nums max-[22.5rem]:w-[3.25rem] md:w-[6rem]"
           data-testid="tour-counter"
         >
           <span aria-hidden>

@@ -20,7 +20,7 @@ export function ModelsPage() {
         <div className="grid animate-in gap-[2rem] duration-1000 fade-in slide-in-from-bottom-4 motion-reduce:animate-none lg:grid-cols-12 lg:items-end lg:gap-x-[1.5rem]">
           <div className="lg:col-span-8">
             <div className="inline-flex origin-bottom-left -skew-x-12 flex-col">
-              <h1 className="font-display text-[4rem] leading-[0.88] font-semibold tracking-[-0.04em] whitespace-nowrap lg:text-[9vw]">
+              <h1 className="font-display text-[4rem] leading-[0.88] font-semibold tracking-[-0.04em] whitespace-nowrap max-[22.5rem]:text-[3.25rem] lg:text-[9vw]">
                 {LINEUP.heading}
               </h1>
               <div aria-hidden className="mt-[1.25rem] flex w-full items-center">

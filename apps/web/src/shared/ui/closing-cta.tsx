@@ -193,7 +193,7 @@ export function ClosingCta({
           >
             <h2
               className={cn(
-                "font-display max-w-[12ch] text-[4rem] leading-[0.88] font-semibold tracking-[-0.04em]",
+                "font-display max-w-[12ch] text-[4rem] leading-[0.88] font-semibold tracking-[-0.04em] max-[22.5rem]:text-[3.25rem]",
                 oneLine ? "lg:max-w-none lg:text-[8vw] lg:whitespace-nowrap" : "lg:text-[12vw]",
                 // Right: measured ink compensation. A line ending in a low glyph (".") leaves its
                 // rightmost ink 0.19em inside the box once slanted from the top-right (33px at

@@ -564,7 +564,7 @@ export function ModelTour({
         {controls && pinned ? (
           <a
             data-tour-js-only=""
-            className="bg-ink text-paper text-label hover:bg-graphite landscape-short:right-[max(var(--gutter),env(safe-area-inset-right))] landscape-short:bottom-[calc(0.75rem+env(safe-area-inset-bottom))] landscape-short:left-auto landscape-short:translate-x-0 absolute right-(--gutter) bottom-[calc(1rem+env(safe-area-inset-bottom))] z-30 flex h-[2.75rem] items-center gap-[0.75rem] rounded-full px-[1.25rem] whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring md:right-auto md:left-1/2 md:-translate-x-1/2 md:px-[1.5rem] lg:bottom-[1.5rem]"
+            className="bg-ink text-paper text-label hover:bg-graphite landscape-short:right-[max(var(--gutter),env(safe-area-inset-right))] landscape-short:bottom-[calc(0.75rem+env(safe-area-inset-bottom))] landscape-short:left-auto landscape-short:translate-x-0 absolute right-(--gutter) bottom-[calc(1rem+env(safe-area-inset-bottom))] z-30 flex h-[2.75rem] items-center gap-[0.75rem] rounded-full px-[1.25rem] whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring max-[22.5rem]:gap-[0.5rem] max-[22.5rem]:px-[0.875rem] md:right-auto md:left-1/2 md:-translate-x-1/2 md:px-[1.5rem] lg:bottom-[1.5rem]"
             data-testid="jump-to-summary"
             href={`#${SUMMARY_ID}`}
           >

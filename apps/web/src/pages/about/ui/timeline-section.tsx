@@ -72,7 +72,7 @@ export function Timeline() {
         <ol className="flex flex-col gap-[4rem] lg:gap-[2rem]">
           {TIMELINE.entries.map((entry) => (
             <li
-              className="grid gap-[1.5rem] lg:grid-cols-12 lg:gap-x-[1.5rem] lg:py-[2rem]"
+              className="grid grid-cols-[minmax(0,1fr)] gap-[1.5rem] lg:grid-cols-12 lg:gap-x-[1.5rem] lg:py-[2rem]"
               key={`${entry.year}-${entry.title}`}
             >
               <p className="lg:text-title self-start text-[3.5rem] leading-none font-semibold tracking-[-0.04em] lg:sticky lg:top-[6.5rem] lg:col-span-3">
@@ -100,7 +100,7 @@ export function Timeline() {
 function Media({ entry }: { entry: Entry }) {
   if (entry.photos.length === 0 && entry.panel) {
     return (
-      <div className="bg-sand flex aspect-4/3 min-h-[16rem] flex-col justify-end overflow-hidden pt-[2rem]">
+      <div className="bg-sand flex aspect-4/3 min-h-[16rem] w-full flex-col justify-end overflow-hidden pt-[2rem]">
         <p
           aria-hidden
           className="model-name font-display origin-bottom-left px-[1.75rem] text-[4rem] leading-[0.9] font-semibold tracking-[-0.04em] lg:text-[6rem]"

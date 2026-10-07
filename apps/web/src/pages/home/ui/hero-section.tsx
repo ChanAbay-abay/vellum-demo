@@ -301,11 +301,13 @@ export function Hero() {
          * Bone scrim between the rider and the copy, so the statement never sits on the jersey or
          * the tyres. Phones and portrait tablets stack the copy full width, so it is a linear wash
          * from the bottom; on desktop it is a radial from the bottom-left corner that clears the
-         * rider's body. Static: it is part of the ground, not the intro.
+         * rider's body. Static: it is part of the ground, not the intro. Below sm the stacked copy
+         * is ~14rem tall in rem while 50% shrinks with the screen, so the 25rem floor keeps the
+         * whole statement inside the near-solid band on short phones (320x640 fell to 2.5:1).
          */}
         <div
           aria-hidden="true"
-          className="from-bone via-bone/85 pointer-events-none absolute inset-x-0 bottom-0 h-[50%] bg-linear-to-t via-55% to-transparent lg:right-auto lg:h-[50svh] lg:w-[70vw] lg:bg-radial-[farthest-side_at_0_100%] lg:via-70%"
+          className="from-bone via-bone/85 pointer-events-none absolute inset-x-0 bottom-0 h-[max(50%,25rem)] bg-linear-to-t via-55% to-transparent sm:h-[50%] lg:right-auto lg:h-[50svh] lg:w-[70vw] lg:bg-radial-[farthest-side_at_0_100%] lg:via-70%"
         />
 
         <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-[2.5rem] px-(--gutter) pb-[max(2rem,calc(env(safe-area-inset-bottom)+1.25rem))] lg:flex-row lg:items-end lg:justify-between lg:pb-[6rem]">

@@ -57,7 +57,7 @@ export function LineupRow({
             tone={onInk ? "white" : "black"}
           />
         ) : (
-          <span className="model-name font-display lg:text-display block origin-bottom-left text-[4.5rem] leading-[0.9] font-semibold tracking-[-0.04em] whitespace-nowrap">
+          <span className="model-name font-display lg:text-display block origin-bottom-left text-[4.5rem] leading-[0.9] font-semibold tracking-[-0.04em] whitespace-nowrap max-[22.5rem]:text-[3.5rem]">
             {item.label}
           </span>
         )}

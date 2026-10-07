@@ -22,7 +22,7 @@ export function ModelSummary({ content }: { content: ModelContent }) {
       id={SUMMARY_ID}
     >
       <h2
-        className="text-heading lg:text-title mb-[3rem] max-w-[18ch] text-[2.5rem] lg:mb-[4rem]"
+        className="text-heading lg:text-title mb-[0.5rem] max-w-[18ch] text-[2.5rem] md:mb-[3rem] lg:mb-[4rem]"
         id="summary-heading"
       >
         {typeof summary.heading === "string"
