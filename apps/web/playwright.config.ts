@@ -23,7 +23,8 @@ export default defineConfig({
       VITE_SITE_URL: "http://127.0.0.1:3100"
     },
     reuseExistingServer: false,
-    timeout: 120_000,
+    // The build (image variants + prerender) alone outlasts 120s on a CI runner
+    timeout: 300_000,
     url: E2E_BASE_URL
   }
 });
