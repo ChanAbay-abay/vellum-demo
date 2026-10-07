@@ -91,5 +91,14 @@ export const TERRENO = {
     ]
   },
   // PROPOSED heading, so it does not repeat the gallery's last line.
-  cta: { heading: "Find your Terreno.", label: "Ask about Terreno" }
+  cta: {
+    heading: "Find your Terreno.",
+    label: "Ask about Terreno",
+    // Pexels stand-in (context/images/terreno/samples/SOURCES.md); not grass-2 (Rockrider logo).
+    image: {
+      image: xcRoad,
+      alt: "Dark XC hardtail on a forest road",
+      sample: { credit: "Austin Briones / Pexels" }
+    }
+  }
 } satisfies ModelContent;

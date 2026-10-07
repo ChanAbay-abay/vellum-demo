@@ -11,7 +11,7 @@ const VIRTUAL_PREFIX = "\0responsive-image:";
 export function defaultDirectives(url: URL) {
   if (url.searchParams.has("picture")) {
     return new URLSearchParams({
-      w: "640;1080;1600;2400",
+      w: "480;640;828;1080;1600;2400",
       format: "avif;webp;jpg",
       as: "picture"
     });

@@ -1,9 +1,16 @@
 import { useLenis } from "lenis/react";
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore
+} from "react";
 
 import { Picture } from "@zo-stack/ui/components/picture";
 import { useGsapScene } from "@zo-stack/ui/hooks/use-gsap-scene.hook";
-import { MOTION_QUERIES, type ScrollTrigger, gsap } from "@zo-stack/ui/lib/gsap";
+import { MOTION_QUERIES, ScrollTrigger, gsap } from "@zo-stack/ui/lib/gsap";
 import { cn } from "@zo-stack/ui/lib/utils";
 
 import { ArrowDownIcon } from "@/shared/ui/icons";
@@ -19,18 +26,48 @@ import { TourControls } from "@/widgets/model-page/ui/tour-controls";
 const MOVE = 1;
 const HOLD = 1.1;
 const TAIL = 0.9;
-/** Scroll per beat, in svh. The section is `beats * BEAT_SVH + 100svh` tall. */
-const BEAT_SVH = 90;
 /** Desktop pinned framing: subject centre sits this fraction of the width right of centre. */
 const SHIFT = 0.16;
-/** Pinned (motion allowed) and wide: the same conditions as the `lg:` scrim and copy column. */
-const SHIFT_QUERY = `(min-width: 64rem) and ${MOTION_QUERIES.motion}`;
+/** Short landscape screens (phones on their side): the `landscape-short:` variant in app.css. */
+const LANDSCAPE_SHORT = "(orientation: landscape) and (max-height: 32rem) and (width < 64rem)";
+/**
+ * Pinned (motion allowed) with the copy in a left column: wide (the `lg:` scrim and column) or
+ * a phone on its side (the `landscape-short:` ones).
+ */
+const SHIFT_QUERY = `(min-width: 64rem) and ${MOTION_QUERIES.motion}, ${LANDSCAPE_SHORT} and ${MOTION_QUERIES.motion}`;
+/** Pinned below lg the copy sits along the bottom: lift the subject into the space above it. */
+const LIFT = 0.19;
+const LIFT_QUERY = `(max-width: 63.98rem) and ${MOTION_QUERIES.motion}`;
 /** Seconds for an arrow step through Lenis; the scrub then carries camera and copy along. */
 const STEP_DURATION = 1.4;
 /** px: sitting this close to a hold point counts as being on it, so → moves on to the next. */
 const STEP_TOLERANCE = 4;
 /** Giant title opacity while the intro beat holds (matches `opacity-30`), easing to 10% after. */
 const INTRO_TITLE_OPACITY = 0.3;
+
+/**
+ * Anything open that owns the arrow keys: Radix menus and dialogs (the nav's Catalogue dropdown
+ * and Menu sheet), any modal, or a nav trigger reporting itself expanded.
+ */
+const OPEN_OVERLAY = [
+  '[role="menu"]',
+  '[role="dialog"]',
+  '[aria-modal="true"]',
+  // Scoped to the site chrome: dev tools and accordions elsewhere also report aria-expanded.
+  'header [aria-expanded="true"]',
+  'nav [aria-expanded="true"]'
+] as const;
+
+/** No-JS: turn the server-rendered pinned layout into the static stacked one (see the doc comment). */
+const NO_SCRIPT_TOUR = [
+  "[data-tour]{height:auto!important;padding:5rem 0!important}",
+  "[data-tour-pin]{position:relative!important;height:auto!important;display:flex!important;flex-direction:column;gap:4rem;padding:0 var(--gutter)}",
+  "[data-tour-pin]>[data-testid=model-stage]{position:relative!important;inset:auto!important;width:100%;aspect-ratio:16/9;max-height:80svh}",
+  "[data-tour-copy]{position:static!important;height:auto!important;width:auto!important;padding:0!important}",
+  "[data-tour-copy]>ol{max-width:none!important;gap:3rem 1.5rem;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr))}",
+  "[data-tour] [data-beat]{grid-area:auto!important;align-self:start!important;opacity:1!important}",
+  "[data-tour-js-only]{display:none!important}"
+].join("");
 
 /** Where the scrubbed timeline sits for each beat, in timeline seconds. */
 type BeatTimes = { swaps: number[]; holds: number[] };
@@ -53,16 +90,15 @@ function subscribeMotion(onChange: () => void) {
  *
  * Two layouts from one tree, so the canvas mount never remounts:
  * - pinned: motion allowed. Tall section, full-screen sticky stage, copy crossfading in one slot.
- * - static: the server render, no-JS and reduced motion. The bike in its first (wide) pose
- *   over the title, the beats as a plain list below. The page reads with no scroll effects.
- * `pinned` comes from `useSyncExternalStore` with a `false` server snapshot, so hydration
- * always matches and the pinned layout swaps in right after (RULES §10).
+ * - static: reduced motion and no-JS. The bike in its first (wide) pose over the title, the
+ *   beats as a plain list below. The page reads with no scroll effects.
  *
- * All beat copy stays in the accessibility tree in both layouts; only opacity hides it.
- *
- * The server renders the pinned layout (the motion default), so a page that opens on the tour
- * paints its first frame without a layout swap; reduced-motion visitors swap to the static
- * layout right after hydration (useSyncExternalStore re-renders with the client snapshot).
+ * The server renders the pinned layout (the motion default; `useSyncExternalStore`'s server
+ * snapshot is `true`), so a page that opens on the tour paints its first frame without a layout
+ * swap. Reduced-motion visitors swap to the static layout right after hydration (the store
+ * re-renders with the client snapshot, so hydration still matches, RULES §10). No-JS visitors
+ * get the static layout from a <noscript> style that overrides the pinned one (NO_SCRIPT_TOUR).
+ * A live reduced-motion toggle keeps the reader's place (see `readPlace`).
  *
  * Pages without a hero (`controls`) also get the control bar: arrows step to each beat's hold
  * point by scrolling through Lenis, so the existing scrub moves camera and copy (no second
@@ -85,6 +121,11 @@ export function ModelTour({
   const poseRef = useRef<FlatPose>(flattenPose(beats[0].camera));
   const [status, setStatus] = useState<"loading" | "ready" | "failed">("loading");
   const [beatIndex, setBeatIndex] = useState(0);
+  // The counter's value for code outside render (the layout-swap bookkeeping below).
+  const beatIndexRef = useRef(0);
+  useEffect(() => {
+    beatIndexRef.current = beatIndex;
+  }, [beatIndex]);
   const triggerRef = useRef<ScrollTrigger | null>(null);
   const timesRef = useRef<BeatTimes | null>(null);
   const [atStart, setAtStart] = useState(true);
@@ -109,7 +150,12 @@ export function ModelTour({
       stage = createBikeStage(mount, tour.bike, {
         onReady: () => setStatus("ready"),
         // Pinned on desktop the canvas is full-bleed under the copy column: frame the bike right.
-        shift: () => (window.matchMedia(SHIFT_QUERY).matches ? SHIFT : 0)
+        shift: () => (window.matchMedia(SHIFT_QUERY).matches ? SHIFT : 0),
+        // Below lg (except on its side, where it shifts instead) the copy is at the bottom.
+        lift: () =>
+          window.matchMedia(LIFT_QUERY).matches && !window.matchMedia(LANDSCAPE_SHORT).matches
+            ? LIFT
+            : 0
       });
       if (!stage) return setStatus("failed");
       stage.setPose(poseRef.current);
@@ -209,6 +255,81 @@ export function ModelTour({
   );
 
   /**
+   * Keep the reader's place when the layout swaps (reduced motion toggled live). The place is
+   * recorded as a beat (inside the tour) or a distance from the tour's edge (above or below it),
+   * because the two layouts differ in height by thousands of pixels. The record is kept current
+   * from scroll events (rAF-gated) and the counter; the swap's layout effect runs in the commit,
+   * before the swap's own scroll events arrive, so it still reads the pre-swap place. (Reading it
+   * in an effect cleanup does not work: by then React has already mutated the DOM.)
+   * Declared after the GSAP scene so the new ScrollTrigger exists when this restores.
+   */
+  const placeRef = useRef<Place>({ kind: "before", offset: 0 });
+  const armedRef = useRef(false);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    if (armedRef.current && section) {
+      const saved = placeRef.current;
+      const top = section.getBoundingClientRect().top + window.scrollY;
+      let y = 0;
+      if (saved.kind === "before") y = Math.min(saved.offset, top);
+      else if (saved.kind === "after") y = top + section.offsetHeight + saved.offset;
+      else if (pinned) {
+        ScrollTrigger.refresh();
+        const st = triggerRef.current;
+        const times = timesRef.current;
+        if (st && times) {
+          const total = st.animation?.duration() ?? 1;
+          y = st.start + ((times.holds[saved.beat] ?? 0) / total) * (st.end - st.start);
+        }
+      } else {
+        const beat = section.querySelectorAll<HTMLElement>("[data-beat]")[saved.beat];
+        y = beat
+          ? beat.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.3
+          : top;
+      }
+      if (pinned) {
+        // The scrub's onUpdate only fires on change; set the counter for where we land.
+        const beat =
+          saved.kind === "beat" ? saved.beat : saved.kind === "before" ? 0 : beats.length - 1;
+        setBeatIndex(beat);
+        setAtStart(beat === 0 && saved.kind !== "after");
+      }
+      const target = Math.max(0, Math.round(y));
+      // Lenis (re)mounts on the same media change; land the page and Lenis on the same place.
+      window.scrollTo({ top: target, behavior: "instant" });
+      requestAnimationFrame(() => {
+        lenis?.scrollTo(target, { immediate: true, force: true });
+        window.scrollTo({ top: target, behavior: "instant" });
+      });
+    }
+    // Arm only once the layout matches the live query. Hydrating for a reduced-motion visitor
+    // first commits the server's pinned layout, then swaps: that swap is the page loading, not
+    // a reader mid-page, and "restoring" the pinned layout's beat 0 onto the static list
+    // scrolled the fresh page down to it. The browser's own scroll (top, or a #hash) stands.
+    armedRef.current = pinned === window.matchMedia(MOTION_QUERIES.motion).matches;
+    // Runs on the layout swap only; everything else is read fresh when it does.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pinned]);
+
+  useEffect(() => {
+    let frame = 0;
+    const record = () => {
+      frame = 0;
+      placeRef.current = readPlace(sectionRef.current, pinned, beatIndexRef.current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(record);
+    };
+    record();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [pinned, beatIndex]);
+
+  /**
    * Step from where the page actually is, not from the counter: → goes to the first beat hold
    * point strictly after the current scroll, ← to the last one strictly before it, and → past
    * the last beat goes to the summary. While an arrow step is still running, "current" is its
@@ -257,6 +378,15 @@ export function ModelTour({
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
       const target = e.target as HTMLElement | null;
       if (target?.closest("input, textarea, select, [contenteditable]")) return;
+      // Arrows belong to whatever is open or focused outside the tour: an open menu, dialog or
+      // popover anywhere on the page, or focus inside the site header/nav (menubar habits).
+      if (OPEN_OVERLAY.some((sel) => document.querySelector(sel))) return;
+      if (
+        target?.closest("header, nav, [role=menu], [role=dialog]") &&
+        !sectionRef.current?.contains(target)
+      ) {
+        return;
+      }
       if (!triggerRef.current?.isActive) return;
       e.preventDefault();
       step(e.key === "ArrowRight" ? 1 : -1);
@@ -276,24 +406,30 @@ export function ModelTour({
 
   return (
     <section
-      aria-labelledby="tour-heading"
+      aria-label={tour.heading}
       className={cn(
         "bg-ink text-paper relative",
-        pinned ? "h-[calc(var(--beats)*var(--beat-h)+100svh)]" : "py-[5rem] lg:py-[8rem]"
+        // Scroll per beat: 70svh on phones and tablets (paced by flicks), 90svh from lg.
+        pinned
+          ? "h-[calc(var(--beats)*var(--beat-h)+100svh)] [--beat-h:70svh] lg:[--beat-h:90svh]"
+          : "py-[5rem] lg:py-[8rem]"
       )}
+      data-tour=""
       ref={sectionRef}
       // Per-model beat count rides a CSS variable rather than a generated class name.
-      style={{ "--beats": beats.length, "--beat-h": `${BEAT_SVH}svh` } as React.CSSProperties}
+      style={{ "--beats": beats.length } as React.CSSProperties}
     >
-      <h2 className="sr-only" id="tour-heading">
-        {tour.heading}
-      </h2>
+      {/* React never hydrates <noscript>, so this only exists with JavaScript off. */}
+      <noscript>
+        <style>{NO_SCRIPT_TOUR}</style>
+      </noscript>
       <div
         className={cn(
           pinned
             ? "sticky top-0 h-svh overflow-hidden"
             : "flex flex-col gap-[4rem] overflow-hidden px-(--gutter)"
         )}
+        data-tour-pin=""
       >
         {/* Stage: title (z-0) under the transparent canvas (z-10). */}
         <div
@@ -315,12 +451,7 @@ export function ModelTour({
             </div>
           </div>
 
-          <div
-            className={cn(
-              "absolute z-10",
-              pinned ? "inset-x-0 top-0 bottom-[38%] lg:bottom-0" : "inset-0"
-            )}
-          >
+          <div className="absolute inset-0 z-10">
             {/*
               Poster: never painted on the normal path. Until the first WebGL frame the stage is
               ink with the title behind it, then the canvas fades in. The poster mounts only when
@@ -343,26 +474,38 @@ export function ModelTour({
           </div>
         </div>
 
-        {/* Desktop pinned: an ink scrim under the copy column so close-ups never fight the text. */}
+        {/*
+          Pinned: an ink scrim under the copy so close-ups never fight the text. Desktop: the
+          left column. Below lg: the bottom band, where the copy and controls sit.
+        */}
         {pinned ? (
-          <div
-            aria-hidden
-            className="from-ink via-ink/75 pointer-events-none absolute inset-y-0 left-0 z-[15] hidden w-[42%] bg-linear-to-r to-transparent lg:block"
-          />
+          <>
+            <div
+              aria-hidden
+              className="from-ink via-ink/75 landscape-short:block pointer-events-none absolute inset-y-0 left-0 z-[15] hidden w-[42%] bg-linear-to-r to-transparent lg:block"
+            />
+            <div
+              aria-hidden
+              className="from-ink via-ink/85 landscape-short:hidden pointer-events-none absolute inset-x-0 bottom-0 z-[15] h-[45%] bg-linear-to-t to-transparent lg:hidden"
+            />
+          </>
         ) : null}
 
         {/*
           Copy (z-20). Pinned, the beats share one grid cell, bottom-aligned, so the stack is as
           tall as the longest beat and the controls sit a fixed gap under whichever beat shows,
-          centred on the stack's width.
+          centred on the stack's width. Below lg the column bottom-anchors 5rem (+ safe area) up:
+          1rem to the edge + the 2.75rem pill + a 1.25rem gap. Below md the controls drop out of
+          the column onto the pill's row (top = the column's bottom + that same gap), bottom-left.
         */}
         <div
           className={cn(
             "z-20",
             pinned
-              ? "absolute inset-x-0 bottom-0 flex h-[38%] flex-col justify-center gap-[1.25rem] px-(--gutter) lg:top-0 lg:h-auto lg:w-[34%]"
+              ? "landscape-short:top-0 landscape-short:bottom-0 landscape-short:w-[44%] landscape-short:justify-center landscape-short:gap-[0.75rem] landscape-short:pl-[max(var(--gutter),env(safe-area-inset-left))] absolute inset-x-0 bottom-[calc(5rem+env(safe-area-inset-bottom))] flex flex-col justify-end gap-[1rem] px-(--gutter) lg:top-0 lg:bottom-0 lg:h-auto lg:w-[34%] lg:justify-center lg:gap-[1.25rem]"
               : "relative"
           )}
+          data-tour-copy=""
         >
           <ol
             className={cn(
@@ -390,16 +533,20 @@ export function ModelTour({
                     {beat.title}
                   </h1>
                 ) : (
-                  <h3 className="text-heading lg:text-heading text-[2rem]">{beat.title}</h3>
+                  <h2 className="text-heading lg:text-heading text-[2rem]">{beat.title}</h2>
                 )}
                 {beat.body ? <p className="text-muted-on-dark max-w-[62ch]">{beat.body}</p> : null}
               </li>
             ))}
           </ol>
           {controls && pinned ? (
-            <div className="flex w-full max-w-[30rem] justify-center">
+            <div
+              className="landscape-short:static landscape-short:w-full landscape-short:max-w-[30rem] landscape-short:justify-center absolute top-[calc(100%+1.25rem)] left-(--gutter) flex md:static md:w-full md:justify-center lg:max-w-[30rem]"
+              data-tour-js-only=""
+            >
               <TourControls
                 count={beats.length}
+                atEnd={beatIndex === beats.length - 1}
                 atStart={atStart}
                 index={beatIndex}
                 onNext={() => step(1)}
@@ -409,14 +556,21 @@ export function ModelTour({
           ) : null}
         </div>
 
-        {/* Bottom-centre of the pinned stage, so it is only on screen while the tour is pinned. */}
+        {/*
+          Bottom of the pinned stage, so it is only on screen while the tour is pinned: centred
+          from md up, and on phones bottom-right, opposite the controls on the same row.
+          Solid ink: a translucent chip measured 1.5:1 when a white tube passed behind it.
+        */}
         {controls && pinned ? (
           <a
-            className="bg-paper/10 text-paper text-label hover:bg-paper/20 absolute bottom-[1.5rem] left-1/2 z-30 flex h-[2.75rem] -translate-x-1/2 items-center gap-[0.75rem] rounded-full px-[1.5rem] whitespace-nowrap backdrop-blur-md transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            data-tour-js-only=""
+            className="bg-ink text-paper text-label hover:bg-graphite landscape-short:right-[max(var(--gutter),env(safe-area-inset-right))] landscape-short:bottom-[calc(0.75rem+env(safe-area-inset-bottom))] landscape-short:left-auto landscape-short:translate-x-0 absolute right-(--gutter) bottom-[calc(1rem+env(safe-area-inset-bottom))] z-30 flex h-[2.75rem] items-center gap-[0.75rem] rounded-full px-[1.25rem] whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring md:right-auto md:left-1/2 md:-translate-x-1/2 md:px-[1.5rem] lg:bottom-[1.5rem]"
             data-testid="jump-to-summary"
             href={`#${SUMMARY_ID}`}
           >
-            {tour.summaryLabel ?? "Jump to summary"}
+            {/* Under ~424px the full label and the arrows can't share the row with a clear gap. */}
+            <span className="max-[26.5rem]:hidden">{tour.summaryLabel ?? "Jump to summary"}</span>
+            <span className="hidden max-[26.5rem]:inline">Summary</span>
             <ArrowDownIcon className="w-[0.6rem]" />
           </a>
         ) : null}
@@ -437,4 +591,40 @@ function Poster({ poster }: { poster: ModelContent["tour"]["poster"] }) {
       />
     </div>
   );
+}
+
+type Place =
+  | { kind: "before"; offset: number }
+  | { kind: "after"; offset: number }
+  | { kind: "beat"; beat: number };
+
+/**
+ * Where the reader is relative to the tour: above it (scrollY), below it (how far its end is
+ * above the viewport top), or on a beat. Pinned, the beat is the counter; stacked, it is the last beat whose top
+ * has passed 30% of the viewport.
+ */
+function readPlace(section: HTMLElement | null, pinned: boolean, beat: number): Place {
+  if (!section) return { kind: "before", offset: window.scrollY };
+  const rect = section.getBoundingClientRect();
+  if (rect.top > 0) return { kind: "before", offset: window.scrollY };
+  // Past the tour only once it has fully left the viewport: stacked, the whole tour fits in
+  // little more than a screen, so "bottom in view" still means reading its beats.
+  if (rect.bottom <= 0) return { kind: "after", offset: -rect.bottom };
+  if (pinned) return { kind: "beat", beat };
+  // Stacked, beats sit in rows: take the lowest row whose top has reached the 30% line, and
+  // the first beat in it (reading order), so restoring onto a row reads back the same beat.
+  const line = window.innerHeight * 0.3 + 2;
+  const tops = [...section.querySelectorAll<HTMLElement>("[data-beat]")].map(
+    (el) => el.getBoundingClientRect().top
+  );
+  const reached = tops.filter((t) => t <= line);
+  if (reached.length === 0) return { kind: "beat", beat: 0 };
+  const row = Math.max(...reached);
+  return {
+    kind: "beat",
+    beat: Math.max(
+      0,
+      tops.findIndex((t) => Math.abs(t - row) < 2)
+    )
+  };
 }

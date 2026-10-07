@@ -10,6 +10,7 @@ import { BikeIcon } from "@/shared/ui/bike-icon";
 import { buttonVariants } from "@/shared/ui/button";
 import { ArrowRightIcon, ArrowUpRightIcon } from "@/shared/ui/icons";
 import { InquireLink } from "@/shared/ui/inquire-link";
+import { SampleChip, type SamplePhoto, sampleAlt } from "@/shared/ui/sample-chip";
 import { Stripe } from "@/shared/ui/stripe";
 
 /**
@@ -26,8 +27,12 @@ export type ClosingCtaAction =
 export type ClosingCtaProps = {
   heading: string;
   body?: string;
-  /** Full-bleed photo under an ink gradient. Without it the block is the same, on ink. */
-  image?: { image: ResponsiveImage; alt: string };
+  /**
+   * Full-bleed photo under an ink gradient. Without it the block is the same, on ink.
+   * `position` is the `object-position` crop (default "50% 60%"); `sample` marks a non-Vellum
+   * stand-in: the "Sample photo" chip in the corner opposite the copy, and an alt suffix.
+   */
+  image?: { image: ResponsiveImage; alt: string; position?: string; sample?: SamplePhoto };
   primary: ClosingCtaAction;
   secondary?: ClosingCtaAction;
   /**
@@ -36,6 +41,8 @@ export type ClosingCtaProps = {
    * at the right and drawing right to left with the bike facing left at its leading edge.
    */
   align?: "left" | "right";
+  /** Desktop: set the heading on one line, at a size that fits the row, instead of wrapping at 12ch. */
+  oneLine?: boolean;
 };
 
 /**
@@ -56,7 +63,8 @@ export function ClosingCta({
   image,
   primary,
   secondary,
-  align = "left"
+  align = "left",
+  oneLine = false
 }: ClosingCtaProps) {
   const ref = useRef<HTMLElement>(null);
   const right = align === "right";
@@ -126,12 +134,17 @@ export function ClosingCta({
     >
       {image ? (
         <>
-          <div className="absolute inset-0 -z-10 will-change-transform" data-cta-photo="">
+          <div
+            className="absolute inset-0 -z-10 will-change-transform"
+            data-cta-photo=""
+            // Per-image crop rides a CSS variable rather than a generated class name.
+            style={{ "--cta-position": image.position ?? "50% 60%" } as React.CSSProperties}
+          >
             <Picture
-              alt={image.alt}
+              alt={sampleAlt(image.alt, image.sample)}
               className="absolute inset-0 block size-full"
               image={image.image}
-              imgClassName="size-full object-cover object-[50%_60%] transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:[@media(hover:hover)]:group-has-[.cta-primary:hover]/cta:scale-[1.04]"
+              imgClassName="size-full object-cover object-(--cta-position) transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:[@media(hover:hover)]:group-has-[.cta-primary:hover]/cta:scale-[1.04]"
               sizes="100vw"
             />
           </div>
@@ -143,10 +156,19 @@ export function ClosingCta({
           <div
             aria-hidden
             className={cn(
-              "from-ink/80 absolute inset-0 -z-10 via-transparent to-transparent",
+              // The side wash carries the heading's contrast on bright photos (Edge's white studio
+              // wall measured 4.68:1 with a transparent middle stop; ink/30 lifts it clear).
+              "from-ink/85 via-ink/30 absolute inset-0 -z-10 to-transparent",
               right ? "bg-linear-to-l" : "bg-linear-to-r"
             )}
           />
+          {/* Opposite corner from the copy, clear of the floating nav. */}
+          {image.sample ? (
+            <SampleChip
+              className={cn("top-[7rem]", right ? "left-(--gutter)" : "right-(--gutter)")}
+              sample={image.sample}
+            />
+          ) : null}
         </>
       ) : null}
 
@@ -171,7 +193,8 @@ export function ClosingCta({
           >
             <h2
               className={cn(
-                "font-display max-w-[12ch] text-[4rem] leading-[0.88] font-semibold tracking-[-0.04em] lg:text-[12vw]",
+                "font-display max-w-[12ch] text-[4rem] leading-[0.88] font-semibold tracking-[-0.04em]",
+                oneLine ? "lg:max-w-none lg:text-[8vw] lg:whitespace-nowrap" : "lg:text-[12vw]",
                 // Right: measured ink compensation. A line ending in a low glyph (".") leaves its
                 // rightmost ink 0.19em inside the box once slanted from the top-right (33px at
                 // 172.8px), so the heading moves out by that much to meet the gutter optically.

@@ -20,7 +20,7 @@ const SOCIAL_LINKS = [
 ].filter((social) => social.href);
 
 const LINK =
-  "text-body w-fit hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
+  "text-body w-fit hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring inline-flex min-h-11 items-center lg:min-h-0";
 
 /** Ink footer (PRD "Footer"). The thin 3-band stripe on its top edge is the one accent. */
 export function SiteFooter() {
@@ -32,7 +32,7 @@ export function SiteFooter() {
           <div className="lg:col-span-5">
             <Link
               aria-label={`${siteConfig.name}, home`}
-              className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+              className="inline-block py-[0.375rem] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring lg:inline lg:py-0"
               to="/"
             >
               <VellumLockup className="w-[16rem] lg:w-[24rem]" tone="white" />
@@ -43,7 +43,7 @@ export function SiteFooter() {
           </div>
 
           <div className="grid grid-cols-2 gap-x-[1.5rem] gap-y-[3rem] lg:col-span-7 lg:grid-cols-3">
-            <nav aria-label="Footer" className="flex flex-col gap-[0.75rem]">
+            <nav aria-label="Footer" className="flex flex-col gap-[0.25rem] lg:gap-[0.75rem]">
               <h2 className="text-label text-muted-on-dark mb-[0.5rem]">Explore</h2>
               {FOOTER.links.map((link) => (
                 <Link className={LINK} key={link.to} to={link.to}>
@@ -63,7 +63,7 @@ export function SiteFooter() {
               <p className="text-body text-muted-on-dark">{hoursLabel}</p>
             </div>
 
-            <div className="col-span-2 flex flex-col gap-[0.75rem] lg:col-span-1">
+            <div className="col-span-2 flex flex-col gap-[0.25rem] lg:col-span-1 lg:gap-[0.75rem]">
               <h2 className="text-label text-muted-on-dark mb-[0.5rem]">Contact</h2>
               <a className={LINK} href={`mailto:${email}`}>
                 {email}
@@ -101,7 +101,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {siteConfig.legal.companyName}
           </p>
           <a
-            className="text-muted-on-dark hover:text-paper text-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="text-muted-on-dark hover:text-paper inline-flex min-h-11 items-center text-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring lg:min-h-0"
             href={FOOTER.credit.href}
           >
             {FOOTER.credit.label}

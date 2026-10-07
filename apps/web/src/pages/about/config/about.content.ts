@@ -1,12 +1,15 @@
 import { type ResponsiveImage } from "@zo-stack/ui/components/picture";
 
 import edgeCollage from "@/shared/assets/images/edge/edge-2007-collage.jpg?responsive";
+import edgeGen2 from "@/shared/assets/images/edge/edge-gen2-crop.jpg?responsive";
 import champagneStudio from "@/shared/assets/images/fuerza/champagne/fuerza-champagne-studio.jpg?responsive";
 import frameTubes from "@/shared/assets/images/fuerza/details/fuerza-frame-tubes.jpg?responsive";
 import ghostFrameset from "@/shared/assets/images/fuerza/ghost/fuerza-ghost-frameset.jpg?responsive";
 import retroBlackFrameset from "@/shared/assets/images/fuerza/retro-black/fuerza-retro-black-frameset.jpg?responsive";
 import retroBlackHeadtube from "@/shared/assets/images/fuerza/retro-black/fuerza-retro-black-headtube.jpg?responsive";
+import retroGreigeBike from "@/shared/assets/images/fuerza/retro-greige/fuerza-retro-greige-bike.jpg?responsive";
 import spectrumSilverBike from "@/shared/assets/images/fuerza/spectrum-silver/fuerza-spectrum-silver-bike.jpg?responsive";
+import whiteHazeStudio from "@/shared/assets/images/fuerza/white-haze/fuerza-white-haze-studio.jpg?responsive";
 import poster22Years from "@/shared/assets/images/heritage/heritage-22-years-poster.jpg?responsive";
 import areteRacing from "@/shared/assets/images/heritage/heritage-arete-racing-2006.jpg?responsive";
 import emc2California from "@/shared/assets/images/heritage/heritage-emc2-team-california.jpg?responsive";
@@ -18,6 +21,7 @@ import rideGoldenHour from "@/shared/assets/images/lifestyle/ride-golden-hour.jp
 import rideMuralTeal from "@/shared/assets/images/lifestyle/ride-mural-teal.jpg?responsive";
 import rideRace from "@/shared/assets/images/lifestyle/ride-race.jpg?responsive";
 import rideRiderSide from "@/shared/assets/images/lifestyle/ride-rider-side.jpg?responsive";
+import terrenoMtb from "@/shared/assets/images/terreno/terreno-mtb-ugc.jpg?responsive";
 import { type ClosingCtaProps } from "@/shared/ui/closing-cta";
 
 /**
@@ -32,10 +36,20 @@ export const HERO = {
   story:
     "In 2004, design entrepreneur and triathlete Chris Aldeguer and architect, industrial designer and cyclist Michael Flores founded Vellum Cycles. Their partnership unites an instinctive compulsion for speed with the fundamentals and aesthetic values needed to achieve it. Vellum reflects their personalities: simple and straightforward, with an unyielding commitment to performance.",
   established: "Est. 2004 · Cebu",
-  image: {
-    image: retroBlackHeadtube,
-    alt: "Head tube of a Fuerza Retro Black frame, the orange-to-burgundy stripe painted on the down tube, on a sand backdrop"
-  }
+  /**
+   * Cycles bottom-to-top, alternating model lines (Chan, 2026-10-07). The first is the LCP image.
+   * Ghost, Champagne and Spectrum Silver are left out: the showroom section below shows them.
+   */
+  images: [
+    {
+      image: retroBlackHeadtube,
+      alt: "Head tube of a Fuerza Retro Black frame, the orange-to-burgundy stripe painted on the down tube, on a sand backdrop"
+    },
+    { image: edgeGen2, alt: "Second-generation Vellum Edge, archive photo" },
+    { image: retroGreigeBike, alt: "Fuerza in Retro Greige, complete bike" },
+    { image: terrenoMtb, alt: "Vellum Terreno cross-country bike on a trail" },
+    { image: whiteHazeStudio, alt: "Fuerza in White Haze on a studio backdrop" }
+  ]
 } as const;
 
 /**

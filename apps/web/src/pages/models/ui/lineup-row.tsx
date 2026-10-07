@@ -45,11 +45,12 @@ export function LineupRow({
 }) {
   const headingId = `lineup-${item.label.toLowerCase()}`;
   const onInk = item.ground === "ink";
+  const isEdge = item.to === "/models/edge";
 
   const copy = (
     <>
       <h2 id={headingId}>
-        {item.to === "/models/edge" ? (
+        {isEdge ? (
           <EdgeWordmark
             alt={item.label}
             className="w-[16rem] lg:w-[30rem]"
@@ -70,7 +71,7 @@ export function LineupRow({
     </>
   );
 
-  const copyClass = "flex flex-col items-start gap-[2rem]";
+  const copyClass = cn("flex flex-col gap-[2rem]", isEdge ? "items-end text-right" : "items-start");
 
   return (
     <article
@@ -107,6 +108,7 @@ export function LineupRow({
       <div
         className={cn(
           "flex items-center px-(--gutter) py-[4rem] lg:col-span-6 lg:row-start-1 lg:py-[6rem]",
+          isEdge && "justify-end",
           flip ? "lg:col-start-1" : "lg:col-start-7 lg:pl-[calc(var(--gutter)*2)]"
         )}
       >

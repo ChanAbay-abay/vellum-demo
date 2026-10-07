@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 import { VellumLockup } from "@/shared/ui/logo";
@@ -14,7 +14,9 @@ const MIN_DELTA = 4;
 /**
  * Floating pill nav, DESIGN.md §6 "Nav (CHOSEN)": lockup left, "Catalogue ▾" dropdown and the
  * "Menu ≡" full-screen overlay right. The fully rounded pill is the design's one radius
- * exception, and it stays light on every ground.
+ * exception, and it stays light on every ground. Below `md` the pill doesn't fit all three
+ * (the lockup shrinks under 430px), so phones get the lockup and "Menu" only; the overlay
+ * carries the same links.
  *
  * Hides on scroll down past 80px and returns on scroll up. It never hides while one of its
  * menus is open, and it comes back whenever keyboard focus lands inside it.
@@ -24,6 +26,16 @@ export function SiteNav() {
   const [scrolledAway, setScrolledAway] = useState(false);
   const [modelsOpen, setModelsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
+
+  // The overlay's own links close it on click; this catches back/forward and any other route change.
+  useEffect(
+    () =>
+      router.subscribe("onResolved", ({ pathChanged }) => {
+        if (pathChanged) setMenuOpen(false);
+      }),
+    [router]
+  );
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -51,7 +63,7 @@ export function SiteNav() {
 
   return (
     <header
-      className="fixed inset-x-4 top-4 z-50 mx-auto max-w-[1440px] transition-transform duration-300 ease-out data-[hidden=true]:-translate-y-[calc(100%+2rem)]"
+      className="fixed inset-x-4 top-4 z-50 mx-auto max-w-[1440px] transition-transform duration-300 ease-out data-[hidden=true]:-translate-y-[calc(100%+2rem)] max-md:top-[max(1rem,env(safe-area-inset-top))]"
       data-hidden={hidden}
       onFocus={() => setScrolledAway(false)}
     >
@@ -67,7 +79,9 @@ export function SiteNav() {
           <VellumLockup className="w-[7.5rem] lg:w-[9.25rem]" />
         </Link>
         <div className="flex items-center gap-[1.25rem] lg:gap-[2.5rem]">
-          <ModelsMenu onOpenChange={setModelsOpen} open={modelsOpen} />
+          <div className="contents max-md:hidden">
+            <ModelsMenu onOpenChange={setModelsOpen} open={modelsOpen} />
+          </div>
           <SiteMenu onOpenChange={setMenuOpen} open={menuOpen} />
         </div>
       </nav>

@@ -45,7 +45,7 @@ export function ProductsSection() {
         <p className="text-body max-w-[36ch] lg:col-span-4 lg:col-start-9">{HEADER.body}</p>
       </div>
 
-      <ul className="mt-[3.5rem] grid gap-x-[1.5rem] gap-y-[3.5rem] sm:grid-cols-2 lg:mt-[4.5rem] lg:grid-cols-3 lg:gap-y-[4.5rem]">
+      <ul className="mt-[3.5rem] grid grid-cols-2 gap-x-[0.75rem] gap-y-[2.5rem] sm:grid-cols-2 sm:gap-x-[1.5rem] sm:gap-y-[3.5rem] lg:mt-[4.5rem] lg:grid-cols-3 lg:gap-y-[4.5rem]">
         {PRODUCTS.map((product, i) => {
           const card = <ProductCard aboveFold={i < FIRST_ROW} product={product} />;
           return (
@@ -80,18 +80,20 @@ function ProductCard({
 }) {
   return (
     <InquireLink className="group flex h-full flex-col focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring">
-      <div className="bg-bone relative aspect-4/5 min-h-[16rem] overflow-hidden">
+      <div className="bg-bone relative aspect-4/5 min-h-[12rem] overflow-hidden sm:min-h-[16rem]">
         <Picture
           alt={product.alt}
           className="absolute inset-0 block size-full"
           image={product.image}
           imgClassName="size-full object-cover transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none"
           priority={aboveFold}
-          sizes="(min-width: 1024px) 31vw, (min-width: 640px) 50vw, 100vw"
+          sizes="(min-width: 1024px) 31vw, (min-width: 640px) 50vw, 50vw"
         />
       </div>
       <div className="mt-[1.25rem] flex flex-col gap-[0.35rem]">
-        <span className="text-subheading">{product.name}</span>
+        <span className="sm:text-subheading text-[1.125rem] leading-[1.3] sm:leading-[1.25]">
+          {product.name}
+        </span>
         {"note" in product ? <span className="text-caption">{product.note}</span> : null}
         {product.meta ? (
           <span className="text-caption text-muted-foreground">{product.meta}</span>

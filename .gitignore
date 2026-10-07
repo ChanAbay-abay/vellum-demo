@@ -40,3 +40,8 @@ graphify-out/
 
 # Playwright MCP screenshots/snapshots
 .playwright-mcp
+
+# Internal QA artifacts (test reports, screenshots) stay local; the repo is public
+TEST-REPORT*.md
+context/screens/
+vellum-cycles-demo/screens/

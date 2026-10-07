@@ -36,26 +36,61 @@ const ZOOM = 1.15;
 const FRAME_TOP = 0.07;
 const HEAD_ROOM = 0.03;
 const ASPECT = rider.width / rider.height;
+/**
+ * Portrait stages (height >= width, phones and portrait tablets). Sizing the frame off the
+ * height as above zooms a 16:9 frame to ~4x the stage width, leaving only the jersey. Instead the
+ * frame is PORTRAIT_H of the stage tall (never narrower than the stage times ZOOM, so its edges
+ * stay off-screen) and its bottom edge, the tyres, sits PORTRAIT_BOTTOM down the stage: the head
+ * clears the nav, and the copy below fades the wheels out under the scrim.
+ */
+const PORTRAIT_H = 0.72;
+const PORTRAIT_BOTTOM = 0.86;
 
 function frameRect(stageW: number, stageH: number) {
+  if (stageH >= stageW) {
+    const h = Math.max(PORTRAIT_H * stageH, (stageW * ZOOM) / ASPECT);
+    const w = h * ASPECT;
+    return { x: (stageW - w) / 2, y: PORTRAIT_BOTTOM * stageH - h, w, h };
+  }
   const w = Math.max(stageW, stageH * ASPECT) * ZOOM;
   const h = w / ASPECT;
   return { x: (stageW - w) / 2, y: Math.max(HEAD_ROOM * stageH - FRAME_TOP * h, stageH - h), w, h };
 }
 
-/** frameRect() in CSS for the server-rendered poster, so first paint matches the canvas. */
+/**
+ * frameRect() in CSS for the server-rendered poster, so first paint matches the canvas. The
+ * branch is a container query on the rider layer (`orientation: portrait` is height >= width,
+ * the same test frameRect makes), so it needs a stylesheet rather than an inline style.
+ */
 const POSTER_W = `calc(max(100cqw, 100cqh * ${ASPECT}) * ${ZOOM})`;
 const POSTER_H = `calc(${POSTER_W} / ${ASPECT})`;
-const POSTER_STYLE = {
-  width: POSTER_W,
-  left: `calc((100cqw - ${POSTER_W}) / 2)`,
-  top: `max(${HEAD_ROOM * 100}cqh - ${FRAME_TOP} * ${POSTER_H}, 100cqh - ${POSTER_H})`
-};
+const PORTRAIT_POSTER_H = `max(${PORTRAIT_H * 100}cqh, 100cqw * ${ZOOM / ASPECT})`;
+const PORTRAIT_POSTER_W = `calc(${PORTRAIT_POSTER_H} * ${ASPECT})`;
+const POSTER_CSS = `
+[data-hero-poster] {
+  width: ${POSTER_W};
+  left: calc((100cqw - ${POSTER_W}) / 2);
+  top: max(${HEAD_ROOM * 100}cqh - ${FRAME_TOP} * ${POSTER_H}, 100cqh - ${POSTER_H});
+}
+@container (orientation: portrait) {
+  [data-hero-poster] {
+    width: ${PORTRAIT_POSTER_W};
+    left: calc((100cqw - ${PORTRAIT_POSTER_W}) / 2);
+    top: calc(${PORTRAIT_BOTTOM * 100}cqh - ${PORTRAIT_POSTER_H});
+  }
+}`;
 
 /** Low-priority frame requests in flight at once, so 88 fetches don't starve other assets. */
 const MAX_IN_FLIGHT = 6;
 /** Canvas backing-store cap: frames are 1920 wide, more than 2x buys nothing. */
 const MAX_DPR = 2;
+/**
+ * Phones and touch tablets (LIGHT_QUERY): half the backing store, half the parallel requests,
+ * and every other frame (44 instead of 88, ~4MB instead of 8MB). draw() already holds the
+ * nearest loaded earlier frame, so the skipped ones simply never arrive.
+ */
+const LIGHT_QUERY = "(pointer: coarse), (max-width: 767px)";
+const LIGHT = { maxDpr: 1.5, maxInFlight: 3, frameStep: 2 };
 
 /**
  * Hero, DESIGN.md §6 Direction D: bone ground, the full-width "vellum" wordmark with the Retro
@@ -70,7 +105,9 @@ const MAX_DPR = 2;
  * Scroll: the section is 300svh with a sticky 100svh stage (native-sticky pin). Across the pin
  * the rider plays as a transparent frame sequence drawn to a canvas: helmet toss, then out to
  * the right, leaving the wordmark. Frame 1 is a real <img> (LCP, no-JS and reduced-motion
- * state); the canvas covers it once it has drawn. Both are framed by frameRect().
+ * state); the canvas covers it once it has drawn. Both are framed by frameRect(), which has a
+ * portrait branch for phones and portrait tablets. A static bone scrim sits between the rider
+ * and the copy so the statement keeps its contrast on every frame.
  *
  * Start states are CSS (`invisible`, the rider's offset) carrying `data-reveal` for the
  * no-script reset and `motion-reduce:` overrides, so reduced motion is the static final state
@@ -113,6 +150,11 @@ export function Hero() {
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
 
+    const light = window.matchMedia(LIGHT_QUERY).matches;
+    const maxDpr = light ? LIGHT.maxDpr : MAX_DPR;
+    const maxInFlight = light ? LIGHT.maxInFlight : MAX_IN_FLIGHT;
+    const frameStep = light ? LIGHT.frameStep : 1;
+
     // Index 0 is frame 1. The poster <img> is already that frame, so reuse it rather than refetch.
     const frames: (HTMLImageElement | undefined)[] = Array.from({ length: rider.frameCount });
     let current = 0;
@@ -138,7 +180,7 @@ export function Hero() {
 
     function resize() {
       if (!canvas) return;
-      const dpr = Math.min(window.devicePixelRatio, MAX_DPR);
+      const dpr = Math.min(window.devicePixelRatio, maxDpr);
       canvas.width = Math.round(canvas.clientWidth * dpr);
       canvas.height = Math.round(canvas.clientHeight * dpr);
       drawn = -1;
@@ -150,16 +192,17 @@ export function Hero() {
 
     if (posterRef.current) frames[0] = posterRef.current;
 
-    let next = 1;
+    let next = frameStep;
     let inFlight = 0;
     let cancelled = false;
     function pump() {
-      while (!cancelled && inFlight < MAX_IN_FLIGHT && next < rider.frameCount) {
+      while (!cancelled && inFlight < maxInFlight && next < rider.frameCount) {
         const image = new Image();
         image.fetchPriority = "low";
         image.decoding = "async";
         image.src = rider.frameSrc(next + 1);
-        frames[next++] = image;
+        frames[next] = image;
+        next += frameStep;
         inFlight++;
         image.onload = image.onerror = () => {
           inFlight--;
@@ -222,9 +265,11 @@ export function Hero() {
       className="bg-bone text-ink relative h-[300svh] motion-reduce:h-auto"
       id={HERO.id}
     >
-      <div className="sticky top-0 flex min-h-svh flex-col overflow-hidden pt-[6rem] lg:block lg:h-svh lg:min-h-0 lg:pt-0">
-        <div className="relative min-h-[24rem] flex-1 lg:absolute lg:inset-0">
-          <div className="absolute inset-x-0 top-[20%] px-(--gutter) lg:top-[45%] lg:-translate-y-1/2">
+      {/* Before the poster, so its geometry is set before the image can paint */}
+      <style>{POSTER_CSS}</style>
+      <div className="sticky top-0 h-svh overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-x-0 top-[38%] -translate-y-1/2 px-(--gutter) lg:top-[45%]">
             <HeroWordmark className="block h-auto w-full" label={HERO.wordmarkLabel} />
           </div>
         </div>
@@ -238,12 +283,11 @@ export function Hero() {
             ref={posterRef}
             alt={rider.alt}
             className="absolute h-auto max-w-none"
+            data-hero-poster=""
             decoding="async"
             fetchPriority="high"
             height={rider.height}
             src={rider.frameSrc(1)}
-            // Inline: the geometry is generated from the same constants as the canvas maths.
-            style={POSTER_STYLE}
             width={rider.width}
           />
           <canvas
@@ -253,18 +297,30 @@ export function Hero() {
           />
         </div>
 
-        <div className="relative z-10 flex flex-col gap-[2.5rem] px-(--gutter) pt-[2rem] pb-[2.5rem] lg:absolute lg:inset-x-0 lg:bottom-0 lg:flex-row lg:items-end lg:justify-between lg:pt-0 lg:pb-[6rem]">
+        {/*
+         * Bone scrim between the rider and the copy, so the statement never sits on the jersey or
+         * the tyres. Phones and portrait tablets stack the copy full width, so it is a linear wash
+         * from the bottom; on desktop it is a radial from the bottom-left corner that clears the
+         * rider's body. Static: it is part of the ground, not the intro.
+         */}
+        <div
+          aria-hidden="true"
+          className="from-bone via-bone/85 pointer-events-none absolute inset-x-0 bottom-0 h-[50%] bg-linear-to-t via-55% to-transparent lg:right-auto lg:h-[50svh] lg:w-[70vw] lg:bg-radial-[farthest-side_at_0_100%] lg:via-70%"
+        />
+
+        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-[2.5rem] px-(--gutter) pb-[max(2rem,calc(env(safe-area-inset-bottom)+1.25rem))] lg:flex-row lg:items-end lg:justify-between lg:pb-[6rem]">
           <div className="invisible motion-reduce:visible" data-hero-copy="" data-reveal="">
-            <h1 className="font-display text-[2rem] leading-[0.95] font-semibold tracking-[-0.03em] uppercase lg:text-[3.25rem]">
+            <h1 className="font-display text-[2rem] leading-[0.95] font-semibold tracking-[-0.03em] uppercase sm:text-[2.75rem] lg:text-[3.25rem]">
               <span className="block">{HERO.statement[0]}</span>
               <span className="text-stripe-burgundy block">
                 {HERO.statement[1]}{" "}
-                <span className="from-stripe-orange to-stripe-red bg-linear-to-r bg-clip-text text-transparent">
+                <span className="from-stripe-burgundy to-stripe-red bg-linear-to-r bg-clip-text text-transparent">
                   {HERO.statement[2]}
                 </span>
               </span>
             </h1>
-            <div className="mt-[2rem] flex flex-wrap items-center gap-[0.75rem]">
+            {/* Stacked full width on phones (two labels don't fit 390px side by side) */}
+            <div className="mt-[1.5rem] flex flex-col gap-[0.75rem] sm:mt-[2rem] sm:flex-row sm:flex-wrap sm:items-center">
               <Link className={buttonVariants()} to={HERO.cta.to}>
                 {HERO.cta.label}
                 <ArrowRightIcon className="w-[0.8rem]" />

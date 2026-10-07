@@ -1,5 +1,7 @@
 import { type ResponsiveImage } from "@zo-stack/ui/components/picture";
 
+import { type SamplePhoto } from "@/shared/ui/sample-chip";
+
 import { type BikeModelId } from "@/entities/bike-models";
 
 /**
@@ -14,7 +16,7 @@ export type ModelImage = {
    * A non-Vellum stand-in photo. Renders a "Sample photo" chip on the image and appends
    * "(sample photo)" to its alt text, so nobody mistakes it for the client's own product.
    */
-  sample?: { credit?: string };
+  sample?: SamplePhoto;
 };
 
 /**
@@ -128,7 +130,8 @@ export type ModelContent = {
     microcopy?: string;
     /** Secondary Messenger link; omitted when absent */
     messengerLabel?: string;
-    image?: ModelImage;
+    /** `position` is the photo's `object-position` crop (default "50% 60%"). */
+    image?: ModelImage & { position?: string };
     /** Copy side; see `ClosingCtaProps.align`. Default left. */
     align?: "left" | "right";
   };

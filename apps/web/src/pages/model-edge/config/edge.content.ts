@@ -105,5 +105,16 @@ export const EDGE = {
       { label: "Designed in", value: "Cebu" }
     ]
   },
-  cta: { heading: "Where it started. 2007.", label: "Be first to know", align: "right" }
+  cta: {
+    heading: "Where it started. 2007.",
+    label: "Be first to know",
+    align: "right",
+    // Copy sits right, so the bike reads on the left: anchor the crop to the frame's left half.
+    image: {
+      image: sampleStudio,
+      alt: "Black road race bike in side profile, monochrome",
+      position: "20% 55%",
+      sample: { credit: "Mathias Reding / Pexels" }
+    }
+  }
 } satisfies ModelContent;

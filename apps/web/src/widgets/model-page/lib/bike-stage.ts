@@ -11,7 +11,6 @@ export type BikeStage = {
   dispose: () => void;
 };
 
-const MAX_DPR = 2;
 const DEG = Math.PI / 180;
 
 /**
@@ -31,11 +30,14 @@ export function createBikeStage(
   bike: BikeModelId,
   {
     onReady,
-    shift = () => 0
+    shift = () => 0,
+    lift = () => 0
   }: {
     onReady: () => void;
     /** Fraction of the canvas width to move the subject right, clearing room for copy on the left */
     shift?: () => number;
+    /** Fraction of the canvas height to move the subject up, clearing room for copy below */
+    lift?: () => number;
   }
 ): BikeStage | null {
   let renderer: THREE.WebGLRenderer;
@@ -44,7 +46,9 @@ export function createBikeStage(
   } catch {
     return null;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_DPR));
+  // Touch devices (phones, tablets) cap lower: ~56% of the pixels per frame at 1.5 vs 2.
+  const maxDpr = window.matchMedia("(pointer: coarse)").matches ? 1.5 : 2;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
   renderer.setClearColor(0x000000, 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.domElement.style.display = "block";
@@ -68,6 +72,16 @@ export function createBikeStage(
   const target = new THREE.Vector3();
   let pose: FlatPose | null = null;
   let dirty = true;
+  // Link the shader programs off the main thread before the first draw, so that draw doesn't
+  // stall on a synchronous compile. The canvas stays hidden until the first frame either way.
+  let compiled = false;
+  renderer
+    .compileAsync(scene, camera)
+    .catch(() => {})
+    .finally(() => {
+      compiled = true;
+      dirty = true;
+    });
 
   const applyPose = () => {
     if (!pose) return;
@@ -87,7 +101,8 @@ export function createBikeStage(
     camera.aspect = aspect;
     // A view offset slides the projection, not the camera, so the orbit maths stay centred.
     const dx = shift() * w;
-    if (dx && w && h) camera.setViewOffset(w, h, -dx, 0, w, h);
+    const dy = lift() * h;
+    if ((dx || dy) && w && h) camera.setViewOffset(w, h, -dx, dy, w, h);
     else camera.clearViewOffset();
     camera.updateProjectionMatrix();
     camera.lookAt(target);
@@ -107,7 +122,7 @@ export function createBikeStage(
   let ready = false;
   const tick = () => {
     frame = requestAnimationFrame(tick);
-    if (!dirty || !pose) return;
+    if (!compiled || !dirty || !pose) return;
     dirty = false;
     applyPose();
     renderer.render(scene, camera);

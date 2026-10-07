@@ -5,6 +5,7 @@ import { Picture } from "@zo-stack/ui/components/picture";
 import { cn } from "@zo-stack/ui/lib/utils";
 
 import { BikeIcon } from "@/shared/ui/bike-icon";
+import { SampleChip, sampleAlt } from "@/shared/ui/sample-chip";
 
 import { type ModelContent, type ModelImage } from "@/widgets/model-page/model/model-content";
 
@@ -22,6 +23,11 @@ function luminance(hex: string) {
   });
   return 0.2126 * r! + 0.7152 * g! + 0.0722 * b!;
 }
+
+/** Photos are a snap rail on phones (RULES §19) and a grid from `sm` up. */
+const RAIL =
+  "flex gap-[0.75rem] overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] -mx-(--gutter) px-(--gutter) scroll-px-(--gutter) sm:mx-0 sm:grid sm:gap-[1.5rem] sm:overflow-visible sm:px-0 sm:snap-none";
+const RAIL_ITEM = "w-[78vw] shrink-0 snap-start sm:w-auto sm:shrink";
 
 type Bike = { i: number; x: number; shown: boolean; instant: boolean };
 
@@ -71,7 +77,7 @@ export function ColorwayGallery({ colorways }: { colorways: Colorways }) {
       <div className="flex flex-col gap-[1.25rem] lg:flex-row lg:items-center lg:justify-between">
         {/* Top padding is the room the featured tag and the hover bike rise into. */}
         <fieldset
-          className="bg-bone relative mt-[4.75rem] flex max-w-full min-w-0 gap-[0.25rem] self-start overflow-x-auto rounded-full p-[0.3rem] lg:overflow-visible"
+          className="bg-bone relative mt-[1rem] flex max-w-full min-w-0 [scrollbar-width:none] gap-[0.25rem] self-start overflow-x-auto rounded-full [mask-image:linear-gradient(to_right,black_85%,transparent)] p-[0.3rem] lg:mt-[4.75rem] lg:overflow-visible lg:[mask-image:none]"
           data-testid="colorway-pill"
           onPointerLeave={hideBike}
         >
@@ -107,7 +113,9 @@ export function ColorwayGallery({ colorways }: { colorways: Colorways }) {
               <button
                 aria-pressed={isActive}
                 className={cn(
-                  "text-caption relative flex h-[2.5rem] shrink-0 cursor-pointer items-center gap-[0.6rem] rounded-full px-[1.1rem] whitespace-nowrap transition-colors duration-300",
+                  "text-caption relative flex h-[2.75rem] shrink-0 cursor-pointer items-center gap-[0.6rem] rounded-full px-[1.1rem] whitespace-nowrap transition-colors duration-300 lg:h-[2.5rem]",
+                  // Phones: the featured pill leads the row so it is visible without a sideways scroll.
+                  colorway.featured && "order-first lg:order-none",
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
                   isActive ? "text-paper" : "text-ink/70 hover:text-ink"
                 )}
@@ -135,7 +143,7 @@ export function ColorwayGallery({ colorways }: { colorways: Colorways }) {
                     {colorway.tag ? (
                       <span
                         aria-hidden
-                        className="text-caption text-stripe-red pointer-events-none absolute bottom-full left-1/2 mb-[0.55rem] -translate-x-1/2 font-medium whitespace-nowrap"
+                        className="text-caption text-stripe-red pointer-events-none absolute bottom-full left-1/2 mb-[0.55rem] hidden -translate-x-1/2 font-medium whitespace-nowrap lg:block"
                         data-testid="featured-tag"
                       >
                         {colorway.tag}
@@ -180,7 +188,8 @@ export function ColorwayGallery({ colorways }: { colorways: Colorways }) {
               animate={{ opacity: i === active ? 1 : 0 }}
               aria-hidden={i !== active}
               className={cn(
-                "grid gap-[1.5rem] [grid-area:1/1] sm:grid-cols-3",
+                RAIL,
+                "[grid-area:1/1] sm:grid-cols-3",
                 i !== active && "pointer-events-none"
               )}
               data-active={i === active || undefined}
@@ -189,8 +198,11 @@ export function ColorwayGallery({ colorways }: { colorways: Colorways }) {
               transition={FADE}
             >
               {colorway.photos.slice(0, 3).map((photo) => (
-                <li className="bg-bone relative aspect-4/5 min-h-[16rem]" key={photo.alt}>
-                  <Photo photo={photo} sizes="(min-width: 640px) 31vw, 100vw" />
+                <li
+                  className={cn(RAIL_ITEM, "bg-bone relative aspect-4/5 min-h-[16rem]")}
+                  key={photo.alt}
+                >
+                  <Photo photo={photo} sizes="(min-width: 640px) 31vw, 78vw" />
                 </li>
               ))}
             </m.ul>
@@ -228,18 +240,18 @@ export function PhotoGallery({ photos }: { photos: readonly ModelImage[] }) {
   const four = photos.length % 4 === 0;
   return (
     <ul
-      className={cn("grid gap-[1.5rem] sm:grid-cols-2", four ? "lg:grid-cols-4" : "lg:grid-cols-3")}
+      className={cn(RAIL, "sm:grid-cols-2", four ? "lg:grid-cols-4" : "lg:grid-cols-3")}
       data-testid="photo-gallery"
     >
       {photos.map((photo, i) => (
         // Static list; alt text can repeat between photos, the position cannot.
-        <li className="bg-bone relative aspect-4/5 min-h-[16rem]" key={i}>
+        <li className={cn(RAIL_ITEM, "bg-bone relative aspect-4/5 min-h-[16rem]")} key={i}>
           <Photo
             photo={photo}
             sizes={
               four
-                ? "(min-width: 1024px) 23vw, (min-width: 640px) 50vw, 100vw"
-                : "(min-width: 1024px) 31vw, (min-width: 640px) 50vw, 100vw"
+                ? "(min-width: 1024px) 23vw, (min-width: 640px) 50vw, 78vw"
+                : "(min-width: 1024px) 31vw, (min-width: 640px) 50vw, 78vw"
             }
           />
         </li>
@@ -252,21 +264,14 @@ function Photo({ photo, sizes }: { photo: ModelImage; sizes: string }) {
   return (
     <>
       <Picture
-        alt={photo.sample ? `${photo.alt} (sample photo)` : photo.alt}
+        alt={sampleAlt(photo.alt, photo.sample)}
         className="absolute inset-0 block size-full"
         image={photo.image}
         imgClassName="size-full object-cover"
         sizes={sizes}
       />
       {photo.sample ? (
-        // Above the image layer and outside any hover treatment, so it is never hidden.
-        <span
-          aria-hidden
-          className="bg-ink/70 text-paper text-label pointer-events-none absolute bottom-[0.75rem] left-[0.75rem] z-10 rounded-full px-[0.75rem] py-[0.45rem] backdrop-blur-sm"
-          data-testid="sample-label"
-        >
-          Sample photo{photo.sample.credit ? ` · ${photo.sample.credit}` : ""}
-        </span>
+        <SampleChip className="bottom-[0.75rem] left-[0.75rem]" sample={photo.sample} />
       ) : null}
     </>
   );

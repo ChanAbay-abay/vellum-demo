@@ -90,9 +90,9 @@ export function Showroom() {
           <p className="text-caption mt-[0.5rem] text-muted-foreground">
             {address.street}, {address.city}
           </p>
-          <div className="mt-[2rem] flex flex-wrap items-center gap-x-[2.5rem] gap-y-[0.5rem]">
+          <div className="mt-[2rem] grid grid-cols-2 items-center gap-x-[1.5rem] gap-y-[0.5rem] sm:flex sm:flex-wrap sm:gap-x-[2.5rem]">
             <a
-              className={buttonVariants()}
+              className={buttonVariants({ className: "col-span-2 sm:col-auto" })}
               href={mapsUrl}
               rel="noopener noreferrer"
               target="_blank"
@@ -179,13 +179,13 @@ export function Showroom() {
                           <span key={name}>
                             {n > 0 && " · "}
                             <a
-                              className="group/name relative inline-block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                              className="group/name relative inline-block after:absolute after:inset-x-0 after:-inset-y-[0.625rem] after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                               href={mapsSearch(name, loc.city)}
                               rel="noopener noreferrer"
                               target="_blank"
                             >
                               {name}
-                              <ArrowUpRightIcon className="absolute top-1/2 left-full ml-[0.35rem] w-[0.6rem] -translate-x-[0.35rem] -translate-y-1/2 opacity-0 group-hover/name:translate-x-0 group-hover/name:opacity-100 group-focus-visible/name:translate-x-0 group-focus-visible/name:opacity-100 motion-safe:transition-[opacity,translate] motion-safe:duration-200 motion-safe:ease-out" />
+                              <ArrowUpRightIcon className="absolute top-1/2 left-full ml-[0.35rem] w-[0.6rem] -translate-y-1/2 group-hover/name:translate-x-0 group-hover/name:opacity-100 group-focus-visible/name:translate-x-0 group-focus-visible/name:opacity-100 motion-safe:transition-[opacity,translate] motion-safe:duration-200 motion-safe:ease-out pointer-fine:-translate-x-[0.35rem] pointer-fine:opacity-0" />
                               <span className="sr-only"> (opens Google Maps in a new tab)</span>
                             </a>
                           </span>

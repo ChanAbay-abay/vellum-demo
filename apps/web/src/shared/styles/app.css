@@ -4,6 +4,9 @@
 @import "./fonts.css";
 @import "./theme.css";
 
+/* A phone on its side: too short for copy along the bottom. Below lg so desktop never matches. */
+@custom-variant landscape-short (@media (orientation: landscape) and (max-height: 32rem) and (width < 64rem));
+
 /**
  * Fluid scale: on desktop the root font size grows with the viewport
  * (≈11px at 1024px, 12.5px at 1280px, 16px at 1900px), so every rem-based size,

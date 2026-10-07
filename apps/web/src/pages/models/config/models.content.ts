@@ -6,6 +6,7 @@
  */
 import edgeGen2 from "@/shared/assets/images/edge/edge-gen2-crop.jpg?responsive";
 import fuerzaRetroGreige from "@/shared/assets/images/fuerza/retro-greige/fuerza-retro-greige-bike-alt.jpg?responsive";
+import showroomCebu from "@/shared/assets/images/showroom/showroom-cebu.jpg?responsive";
 import terrenoShowroom from "@/shared/assets/images/terreno/terreno-showroom-ugc.jpg?responsive";
 import { type ClosingCtaProps } from "@/shared/ui/closing-cta";
 
@@ -51,6 +52,8 @@ const ART = {
 
 export const LINEUP = {
   heading: "The lineup.",
+  /** `*` placeholder copy */
+  intro: "Three frames, one standard. Road, race and trail, each built and backed in Cebu.",
   /** Visible label on every row's link; the model name is appended for screen readers */
   viewLabel: "View",
   items: NAV.models.items.map((item) => {
@@ -58,10 +61,18 @@ export const LINEUP = {
   })
 };
 
-/** Closing CTA before the footer, rendered by the shared <ClosingCta>. No photo: plain ink. */
+/** Closing CTA before the footer, rendered by the shared <ClosingCta>; heading on one line on desktop. */
 export const CLOSING = {
   /** `*` placeholder copy */
   heading: "Not sure which one?",
   body: "Tell us how and where you ride. We will point you to the right frame.",
+  // A real Vellum photo. The lineup poster has baked-in text and the colorway lineup is 810px
+  // wide (1.8x upscale at full bleed), so the 1440px showroom shot carries this one.
+  image: {
+    image: showroomCebu,
+    alt: "Built Vellum bikes and framesets in the Cebu showroom",
+    position: "50% 55%"
+  },
+  oneLine: true,
   primary: { label: "Message us", channel: "instagram" }
 } satisfies ClosingCtaProps;

@@ -55,7 +55,17 @@ export const Route = createRootRoute({
         },
         { href: appCss, rel: "stylesheet" }
       ],
-      meta: [...(rootSeo.meta ?? []), { content: siteConfig.themeColor, name: "theme-color" }]
+      meta: [
+        ...(rootSeo.meta ?? []).map((tag) =>
+          "name" in tag && tag.name === "viewport"
+            ? {
+                content: "width=device-width, initial-scale=1, viewport-fit=cover",
+                name: "viewport"
+              }
+            : tag
+        ),
+        { content: siteConfig.themeColor, name: "theme-color" }
+      ]
     };
   }
 });
